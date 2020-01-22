@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+<arg name="robot" default="machines"/>
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="pause" default="false"/>
+  <arg name="world" default="world01" />
+	<arg name="laser_enabled" default="true"/>
+  <arg name="kinect_enabled" default="false"/>
+
+	<env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find husky)/model"/>
+  <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find husky)/model"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"    value="$(find husky)/world/cimatec.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg pause)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+	<include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+  </include>
+
+</launch>
