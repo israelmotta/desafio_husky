@@ -5,10 +5,12 @@
 
   <!-- Insert customization below, sample provided: -->
 
-    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
-    <VLP-16 parent="base" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="${gpu}">
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="${gpu}">
     <origin xyz="0 0 0.1" rpy="0 0 0" />
   </VLP-16>
+
+  <xacro:include filename="$(find gazebo_light_sensor_plugin)/urdf/camera.xacro" />
 
  <!-- <link name="bowler_link">
     <visual>
@@ -60,6 +62,12 @@
     <child link="bowler_link" />
     <origin xyz="0 0 0" rpy="0 0 0.5" />
 </joint> -->
+
+<joint name="camera_joint" type="fixed">
+    <parent link="top_plate_link" />
+    <child link="base_camera" />
+    <origin xyz="0.12 0 0.05" rpy="0 0 0" />
+</joint> 
 
 
 </robot>

@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 <launch>
 
-	<!-- <arg name="robot" default="machines"/>
-  <arg name="debug" default="false"/>
-  <arg name="gui" default="true"/>
-  <arg name="headless" default="false"/>
-  <arg name="pause" default="false"/> -->
-  <!-- <arg name="world" default="world01" /> -->
-
 	<arg name="laser_enabled" default="false"/>
   <arg name="kinect_enabled" default="false"/>
 
@@ -37,6 +30,11 @@
   </include>
 
   <!-- Show in Rviz   -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find husky)/launch/husky.rviz"/>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find husky)/launch/husky.rviz"/> -->
+
+  <!--- Run gmapping -->
+  <!-- <include file="$(find husky_navigation)/launch/gmapping.launch" /> -->
+  <!--- Run Move Base -->
+  <!-- <include file="$(find husky_navigation)/launch/move_base.launch" /> -->
 
 </launch>
