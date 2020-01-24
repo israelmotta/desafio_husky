@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="example">
+  <xacro:arg name="gpu" default="false"/>
+  <xacro:property name="gpu" value="$(arg gpu)" />
+
+  <!-- Insert customization below, sample provided: -->
+
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+    <VLP-16 parent="top_plate_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="${gpu}">
+    <origin xyz="0 0 0.4" rpy="0 0 0" />
+  </VLP-16>
+
+ <link name="bowler_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_custom_description/meshes/red_bowler.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.07" rpy="0 0 0" />
+      <geometry>
+        <box size="0.32 0.25 0.14" rpy="0 0 0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="bowler_joint" type="fixed">
+    <parent link="top_plate_link" />
+    <child link="bowler_link" />
+    <origin xyz="0.1 -0.1 0" rpy="0 0 0.5" />
+  </joint>
+  
+</robot>
