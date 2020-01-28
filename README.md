@@ -6,7 +6,7 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 
 <br><b>Pacotes utilizados:</b></br>
 
-<p><br>Husky: https://www.clearpathrobotics.com/assets/guides/husky/InstallHuskySoftware.html</br>
+<p><br>Husky: https://github.com/husky/husky</br>
 <br>Velodyne VLP-16: https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/</br>
 <br>Cimatec world: https://github.com/PPVTecchio/cimatec_map</br>
 <br>Pointcloud to laserscan: http://wiki.ros.org/pointcloud_to_laserscan</br>
