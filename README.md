@@ -4,15 +4,15 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 ![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/husky/fig/HuskyMap.png)
 
 
-Pacotes utilizados:
+<p><b>Pacotes utilizados:</b></p>
 
 <br>Husky:https://www.clearpathrobotics.com/assets/guides/husky/InstallHuskySoftware.html</br>
 <br>Velodyne VLP-16: https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/</br>
 <br>Cimatec world: https://github.com/PPVTecchio/cimatec_map</br>
 
-Referências:
+<p><b>Referências:</b></p>
 
-Detecção:
+<p>Detecção:</p>
 
 <br>OpenCV with ROS:https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html</br>
 <br>Detecting circles: https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/</br>
