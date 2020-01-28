@@ -12,7 +12,7 @@
   
   <arg name="urdf_extras"         default="$(find husky)/urdf/teste.xacro"/>
   
-  <include file="$(find cimatec_map)/launch/gazebo.launch">
+  <include file="$(find bir_cimatec4_map)/launch/gazebo.launch">
     <!-- <arg name="world_name" value="$(arg world_name)"/>  -->
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>

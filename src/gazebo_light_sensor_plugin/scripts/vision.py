@@ -47,8 +47,8 @@ def image_callback(img_msg):
     # Image processing
     
     # Define range
-    rangomin = np.array([30, 50, 50])
-    rangomax = np.array([50, 255, 255]) # B, G, R
+    rangomin = np.array([25, 50, 50])
+    rangomax = np.array([32, 255, 255]) # B, G, R
 
     # Converts images from RGB to BGR 
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
