@@ -31,22 +31,20 @@ def image_callback(img_msg):
     except CvBridgeError, e:
         rospy.logerr("CvBridge Error: {0}".format(e))
 
-    # show_image(cv_image)
-
     # Copy the image
     img = cv_image.copy()
 
     # Convert to grayscale
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
-    AreaContourLimitMin = 5000  # This value is empirical. Adjust it to your needs
+    AreaContourLimitMin = 100  # This value is empirical. Adjust it to your needs
 
-    # Obtencao das dimensoes da imagem
+    # Obtaining the image dimensions
     height = np.size(img,0)
     width= np.size(img,1)
     ContourQty = 0
      
-    #tratamento da imagem
+    # Image processing
     
     # Define range
     rangomin = np.array([30, 50, 50])
@@ -68,46 +66,48 @@ def image_callback(img_msg):
     kernel = np.ones((5 ,5), np.uint8)
     FrameBinarizado = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
 
-    # show_image(FrameBinarizado)
-
+    # Finding contours
     _, cnts, _ = cv2.findContours(FrameBinarizado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # cv2.drawContours(img, cnts,-1,(255,0,255),3)
 
     contour_list = []
 
     for c in cnts:
-        #se a area do contorno capturado for pequena, nada acontece
+        # If the area of the captured contour is small, nothing happens
         if cv2.contourArea(c) < AreaContourLimitMin:
             continue
         
         # area = cv2.contourArea(c)
 
+        # Approximates a polygonal curve with the specified precision
         approx = cv2.approxPolyDP(c,0.01*cv2.arcLength(c,True),True)
 
+        # Check vertices
         if ((len(approx) > 8) & (len(approx) < 23)):
 
 
             ContourQty = ContourQty + 1
 
-            #obtem coordenadas do contorno (na verdade, de um retangulo que consegue abrangir todo ocontorno) e
-            #realca o contorno com um retangulo.
-            (x, y, w, h) = cv2.boundingRect(c)   #x e y: coordenadas do vertice superior esquerdo
-                                                #w e h: respectivamente largura e altura do retangulo
+            # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
+            #emphasizes the outline with a rectangle.
+            (x, y, w, h) = cv2.boundingRect(c)   #x and y: coordinates of the upper left vertex
+                                                #w and h: respectively width and height of the rectangle
 
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
       
-            #determina o ponto central do contorno e desenha um circulo para indicar
+            # Determines the center point of the contour and draws a circle to indicate
             CoordenadaXCentroContorno = int((x+x+w)/2)
             CoordenadaYCentroContorno = int((y+y+h)/2)
             PontoCentralContorno = (CoordenadaXCentroContorno,CoordenadaYCentroContorno)
             cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
 
-            (a, b) = cv2.minEnclosingCircle(c)
+            # Finds and draw a circle that indicates the contour
+            (a, b) = cv2.minEnclosingCircle(c) # a and b: center and radius of the circle respectively
             rospy.loginfo("Center %d", b)
-            cv2.circle(img, PontoCentralContorno, int(b), (0, 0, 0), 5)
+            cv2.circle(img, PontoCentralContorno, int(b), (0, 255, 0), 5)
 
 
-
+    # Check the quantity of contours
     if (ContourQty > 0):
         cv2.line(img, PontoCentralContorno,(int(width/2),CoordenadaYCentroContorno),(0,255,0),1)
 
