@@ -12,7 +12,7 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 
 <p><b>Referências:</b></p>
 
-<p>Detecção:
+<p><br>Detecção:</br>
 
 <br>OpenCV with ROS:https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html</br>
 <br>Detecting circles: https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/</br>
