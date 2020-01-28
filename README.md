@@ -4,13 +4,13 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 ![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/husky/fig/HuskyMap.png)
 
 
-<p><b>Pacotes utilizados:</b></p>
+<br><b>Pacotes utilizados:</b></br>
 
 <p><br>Husky:https://www.clearpathrobotics.com/assets/guides/husky/InstallHuskySoftware.html</br>
 <br>Velodyne VLP-16: https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/</br>
 <br>Cimatec world: https://github.com/PPVTecchio/cimatec_map</br></p>
 
-<p><b>Referências:</b></p>
+<br><b>Referências:</b></br>
 
 <p><br>Detecção:</br>
 
