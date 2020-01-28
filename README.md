@@ -6,7 +6,7 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 
 <br><b>Pacotes utilizados:</b></br>
 
-<p><br>Husky:https://www.clearpathrobotics.com/assets/guides/husky/InstallHuskySoftware.html</br>
+<p><br>Husky: https://www.clearpathrobotics.com/assets/guides/husky/InstallHuskySoftware.html</br>
 <br>Velodyne VLP-16: https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/</br>
 <br>Cimatec world: https://github.com/PPVTecchio/cimatec_map</br>
 <br>Pointcloud to laserscan: http://wiki.ros.org/pointcloud_to_laserscan</br>
@@ -20,10 +20,10 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 
 <p><br>Detecção:</br>
 
-<br>OpenCV with ROS:https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html</br>
+<br>OpenCV with ROS: https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html</br>
 <br>Detecting circles: https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/</br>
 <br>Circular shapes using contours: http://layer0.authentise.com/detecting-circular-shapes-using-contours.html</br></p>
 
 <p><br>Husky:</br>
 
-<br>Husky customization:https://www.clearpathrobotics.com/assets/guides/husky/HuskyGPSWaypointNav.html</br></p>
+<br>Husky customization: https://www.clearpathrobotics.com/assets/guides/husky/HuskyGPSWaypointNav.html</br></p>
