@@ -22,7 +22,8 @@ Desafio com o Husky realizado na simulação do pátio do Senai Cimatec, com o o
 
 <br>OpenCV with ROS: https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html</br>
 <br>Detecting circles: https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/</br>
-<br>Circular shapes using contours: http://layer0.authentise.com/detecting-circular-shapes-using-contours.html</br></p>
+<br>Circular shapes using contours: http://layer0.authentise.com/detecting-circular-shapes-using-contours.html</br>
+<br>Find distance using OpenCV: https://www.pyimagesearch.com/2015/01/19/find-distance-camera-objectmarker-using-python-opencv/</br></p>
 
 <p><br>Husky:</br>
 
