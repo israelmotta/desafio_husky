@@ -1,8 +1,0 @@
-prefix=/home/israel/desafio_husky/install
-
-Name: nav2d_karto
-Description: Description of nav2d_karto
-Version: 0.4.2
-Cflags: -I/home/israel/desafio_husky/install/include
-Libs: -L/home/israel/desafio_husky/install/lib -lOpenKarto -lMultiMapper
-Requires: roscpp tf nav_msgs geometry_msgs visualization_msgs nav2d_msgs nav2d_localizer
