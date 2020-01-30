@@ -10,7 +10,6 @@ from geometry_msgs.msg import Vector3
 import numpy as np
 
 
-
 # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
 rospy.init_node('opencv_camera', anonymous=True)
 
@@ -29,7 +28,7 @@ def show_image(img):
 # Define a callback for the Image message
 def image_callback(img_msg):
     # log some info about the image topic
-    rospy.loginfo(img_msg.header)
+    # rospy.loginfo(img_msg.header)
 
     # Try to convert the ROS Image message to a CV2 Image
     try:
@@ -121,7 +120,7 @@ def image_callback(img_msg):
             #focalLength = (w * 2) / 1 #distancia focal = 940
             focalLength = 940
             dist = (1 * focalLength) / w
-            #rospy.loginfo(dist)
+            #rospy.loginfo(w)
 
 
             
@@ -133,15 +132,11 @@ def image_callback(img_msg):
     # Resize image to show    
     img_res = cv2.resize(img_view, (width/2, height/2)) 
     # Show the converted image
-    show_image(img_res)
+    # show_image(img_res)
 
     # Publish coordinates and radius
     pub_image.publish(coordinates[0], coordinates[1], coordinates[2])
 
-
-def show_image(img):
-    cv2.imshow("Image Window", img)
-    cv2.waitKey(3)
 
 # Initalize a subscriber to the "/camera/rgb/image_raw" topic with the function "image_callback" as a callback
 sub_image = rospy.Subscriber("/diff/camera_top/image_raw", Image, image_callback)

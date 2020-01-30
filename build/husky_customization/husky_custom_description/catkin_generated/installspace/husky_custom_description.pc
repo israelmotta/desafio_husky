@@ -1,0 +1,8 @@
+prefix=/home/israel/desafio_husky/install
+
+Name: husky_custom_description
+Description: Description of husky_custom_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/israel/desafio_husky/install/lib 
+Requires: 

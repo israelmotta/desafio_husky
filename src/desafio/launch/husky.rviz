@@ -9,6 +9,9 @@ Panels:
         - /Sensing1
         - /Navigation1
         - /Navigation1/Exploration1
+        - /Navigation1/Static Map1
+        - /Navigation1/Global Costmap1
+        - /Navigation1/Local Costmap1
       Splitter Ratio: 0.49492400884628296
     Tree Height: 605
   - Class: rviz/Selection
@@ -349,7 +352,7 @@ Visualization Manager:
           Draw Behind: true
           Enabled: true
           Name: Global Costmap
-          Topic: /map
+          Topic: /move_base/global_costmap/costmap
           Unreliable: false
           Use Timestamp: false
           Value: true
@@ -359,7 +362,7 @@ Visualization Manager:
           Draw Behind: false
           Enabled: true
           Name: Local Costmap
-          Topic: /map
+          Topic: /move_base/local_costmap/costmap
           Unreliable: false
           Use Timestamp: false
           Value: true
@@ -416,7 +419,7 @@ Visualization Manager:
       Marker Topic: /Navigator/markers
       Name: Marker
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
