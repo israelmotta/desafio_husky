@@ -6,14 +6,20 @@ from sensor_msgs.msg import Image
 # Import OpenCV libraries and tools
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
+from geometry_msgs.msg import Vector3
 import numpy as np
 
 
-# Initialize the ROS Node named 'opencv_example', allow multiple nodes to be run with this name
-rospy.init_node('opencv_example', anonymous=True)
+
+# Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
+rospy.init_node('opencv_camera', anonymous=True)
 
 # Initialize the CvBridge class
 bridge = CvBridge()
+
+# Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
+pub_image = rospy.Publisher('camera/param', Vector3, queue_size=1)
+
 
 # Define a function to show the image in an OpenCV Window
 def show_image(img):
@@ -71,6 +77,7 @@ def image_callback(img_msg):
     # cv2.drawContours(img, cnts,-1,(255,0,255),3)
 
     contour_list = []
+    coordinates = [-1, -1, -1]
 
     for c in cnts:
         # If the area of the captured contour is small, nothing happens
@@ -102,11 +109,22 @@ def image_callback(img_msg):
             cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
 
             # Finds and draw a circle that indicates the contour
-            (a, b) = cv2.minEnclosingCircle(c) # a and b: center and radius of the circle respectively
-            rospy.loginfo("Center %d", b)
-            cv2.circle(img, PontoCentralContorno, int(b), (0, 255, 0), 5)
+            # (a, b) = cv2.minEnclosingCircle(c) # a and b: center and radius of the circle respectively
+            # rospy.loginfo("Center %d", b)
+            # cv2.circle(img, int(a), int(b), (0, 255, 0), 5)
+            
+            # Pass coordinates x, y and radius of circle to a variable 
+            coordinates = [PontoCentralContorno[0],PontoCentralContorno[1],  w]
+            # rospy.loginfo(coordinates)
+
+            # How to calc focal dist
+            #focalLength = (w * 2) / 1 #distancia focal = 940
+            focalLength = 940
+            dist = (1 * focalLength) / w
+            #rospy.loginfo(dist)
 
 
+            
     # Check the quantity of contours
     if (ContourQty > 0):
         cv2.line(img, PontoCentralContorno,(int(width/2),CoordenadaYCentroContorno),(0,255,0),1)
@@ -117,6 +135,13 @@ def image_callback(img_msg):
     # Show the converted image
     show_image(img_res)
 
+    # Publish coordinates and radius
+    pub_image.publish(coordinates[0], coordinates[1], coordinates[2])
+
+
+def show_image(img):
+    cv2.imshow("Image Window", img)
+    cv2.waitKey(3)
 
 # Initalize a subscriber to the "/camera/rgb/image_raw" topic with the function "image_callback" as a callback
 sub_image = rospy.Subscriber("/diff/camera_top/image_raw", Image, image_callback)
