@@ -18,6 +18,7 @@ bridge = CvBridge()
 
 # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
 pub_image = rospy.Publisher('camera/param', Vector3, queue_size=1)
+pub_imagedetec = rospy.Publisher('camera/detec', Image, queue_size=10)
 
 
 # Define a function to show the image in an OpenCV Window
@@ -136,6 +137,9 @@ def image_callback(img_msg):
 
     # Publish coordinates and radius
     pub_image.publish(coordinates[0], coordinates[1], coordinates[2])
+    # Publish image
+    msg_frame = bridge.cv2_to_imgmsg(img_view, "bgr8")
+    pub_imagedetec.publish(msg_frame)
 
 
 # Initalize a subscriber to the "/camera/rgb/image_raw" topic with the function "image_callback" as a callback
