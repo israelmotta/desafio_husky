@@ -4,7 +4,7 @@
   <param name="use_sim_time" value="true" />
   
   <!-- Show in Rviz   -->
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/>
 
   <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
   

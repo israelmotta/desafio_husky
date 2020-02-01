@@ -26,6 +26,9 @@
       <arg name="laser_enabled" value="$(arg laser_enabled)"/>
       <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
       <arg name="urdf_extras" value="$(arg urdf_extras)"/>
+      <arg name="x"                 value="49"/>
+      <arg name="y"                 value="10"/>
+      <arg name="z"                 value="0"/>
 
   </include>
 
@@ -52,7 +55,8 @@
         </rosparam>
   </node>
 
-  <node pkg="gazebo_light_sensor_plugin" name="opencv_camera" type="vision.py" output="screen" />
+
+  <!-- <node pkg="gazebo_light_sensor_plugin" name="opencv_camera" type="vision.py" output="screen" /> -->
   <!-- <node pkg="gazebo_light_sensor_plugin" name="robot_vision" type="controlvision.py" output="screen" /> -->
 
 </launch>
