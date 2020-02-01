@@ -6,11 +6,11 @@
   <!-- Show in Rviz   -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/>
 
-  <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+  <!-- <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/> -->
   
 
-  <arg name="map_file" default="$(find desafio)/map/mapa1.yaml"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  <!-- <arg name="map_file" default="$(find desafio)/map/mapa1.yaml"/> -->
+  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
   
 
   <include file="$(find husky_navigation)/launch/amcl.launch" />
@@ -37,7 +37,62 @@
   <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
   <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />
 
-  <node pkg="desafio" name="exploration" type="explore.py" output="screen" />
+  <node pkg="desafio" name="exploration" type="explore.py" output="screen" /> -->
   <!-- <node pkg="gazebo_light_sensor_plugin" name="robot_vision" type="controlvision.py" output="screen" /> -->
+  <arg name="scan_topic" default="scan" />
+
+
+<node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+    <rosparam>
+      odom_frame: odom
+      base_frame: base_link
+      map_frame: map
+      map_update_interval: 0.5 # Publish new map
+      maxUrange: 30 # Should be just less than sensor range
+      maxRange: 60 # Should be just greater than sensor range
+      particles: 40 # Increased from 80
+      # Update frequencies
+      linearUpdate: 0.1
+      angularUpdate: 0.1
+      temporalUpdate: 2.0
+      resampleThreshold: 0.5
+      # Initial Map Size
+      xmin: -80.0
+      ymin: -80.0
+      xmax: 80.0
+      ymax: 80.0
+      delta: 0.05
+      # All default
+      sigma: 0.05
+      kernelSize: 1
+      lstep: 0.05
+      astep: 0.05
+      iterations: 5
+      lsigma: 0.075
+      ogain: 3.0
+      lskip: 0
+      llsamplerange: 0.01
+      llsamplestep: 0.01
+      lasamplerange: 0.005
+      lasamplestep: 0.005
+    </rosparam>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+
+<rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+
+	<node name="Operator" pkg="nav2d_operator" type="operator" >
+		<remap from="scan" to="scan"/>
+		<rosparam file="$(find nav2d_tutorials)/param/operator.yaml"/>
+		<rosparam file="$(find nav2d_tutorials)/param/costmap.yaml" ns="local_map" />
+	</node>
+
+	<node name="Navigator" pkg="nav2d_navigator" type="navigator">
+		<rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
+	</node>
+
+	<node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
+	<node name="Explore" pkg="nav2d_navigator" type="explore_client" />
+	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> 
 
 </launch>

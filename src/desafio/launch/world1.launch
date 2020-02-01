@@ -29,6 +29,7 @@
       <arg name="x"                 value="49"/>
       <arg name="y"                 value="10"/>
       <arg name="z"                 value="0"/>
+      <arg name="yaw"               value="3.14159265359"/>
 
   </include>
 
@@ -37,7 +38,7 @@
         <rosparam>
             target_frame: velodyne # Leave disabled to output scan in pointcloud frame
             transform_tolerance: 0.01
-            min_height: -0.5 <!---0.4-->
+            min_height: -0.45 <!---0.4-->
             <!-- max_height: 1.0 -->
             <!-- angle_min: -1.5708 # -M_PI/2
             angle_max: 1.5708 # M_PI/2
