@@ -13,4 +13,4 @@ map_topic: map
 laser_topic: scan
 
 ### ROS services ##########################################
-map_service: dynamic_map
+map_service: static_map

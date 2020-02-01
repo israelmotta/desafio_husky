@@ -1,164 +1,43 @@
+<?xml version="1.0"?>
 <launch>
 
   <param name="use_sim_time" value="true" />
-
+  
   <!-- Show in Rviz   -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/> -->
 
-    <!--- Run gmapping -->
-  <arg name="scan_topic" default="scan" />
+  <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+  
 
-  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
-    <rosparam>
-      odom_frame: odom
-      base_frame: base_link
-      map_frame: map
+  <arg name="map_file" default="$(find desafio)/map/mapa1.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  
 
-      map_update_interval: 0.5 # Publish new map
+  <include file="$(find husky_navigation)/launch/amcl.launch" />
+  <include file="$(find husky_navigation)/launch/move_base.launch" />
+  
 
-      maxUrange: 15 # Should be just less than sensor range 15
-      maxRange: 30 # Should be just greater than sensor range 30
-      particles: 100 # Increased from 80
-
-      # Update frequencies
-      linearUpdate: 0.3
-      angularUpdate: 0.5
-      temporalUpdate: 2.0
-      resampleThreshold: 0.5
-
-      # Initial Map Size
-      xmin: -100.0
-      ymin: -100.0
-      xmax: 100.0
-      ymax: 100.0
-      delta: 0.05
-
-      # All default
-      sigma: 0.05
-      kernelSize: 1
-      lstep: 0.05
-      astep: 0.05
-      iterations: 5
-      lsigma: 0.075
-      ogain: 3.0
-      lskip: 0
-      llsamplerange: 0.01
-      llsamplestep: 0.01
-      lasamplerange: 0.005
-      lasamplestep: 0.005
-
-    </rosparam>
-    <remap from="scan" to="$(arg scan_topic)"/>
+  <node name="Operator" pkg="nav2d_operator" type="operator" >
+    <remap from="scan" to="scan"/>
+    <rosparam file="$(find nav2d_tutorials)/param/operator.yaml"/>
+    <rosparam file="$(find nav2d_tutorials)/param/costmap.yaml" ns="local_map" />
   </node>
-    <!--- Run Move Base -->
-    <include file="$(find husky_navigation)/launch/move_base.launch" />
-
-
-  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
-        <remap from="cloud_in" to="/velodyne_points"/>
-        <rosparam>
-            target_frame: velodyne # Leave disabled to output scan in pointcloud frame
-            transform_tolerance: 0.01
-            min_height: -0.5 <!---0.4-->
-            <!-- max_height: 1.0 -->
-            <!-- angle_min: -1.5708 # -M_PI/2
-            angle_max: 1.5708 # M_PI/2
-            angle_increment: 0.0087 # M_PI/360.0
-            scan_time: 0.3333
-            range_min: 0.45
-            range_max: 50.0
-            use_inf: true
-            inf_epsilon: 1.0 -->
-            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
-            # 0 : Detect number of cores
-            # 1 : Single threaded
-            # 2->inf : Parallelism level
-            concurrency_level: 0
-        </rosparam>
+  
+  <node name="SelfLocalizer" pkg="nav2d_localizer" type="localizer">
+    <remap from="scan" to="scan"/>
+    <param name="min_particles" type="int" value="500"/>
+    <param name="max_particles" type="int" value="20000"/>
   </node>
+  
+  <node name="Navigator" pkg="nav2d_navigator" type="navigator">
+    <rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
+  </node>
+  
+  <node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
+  <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
+  <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />
 
-    <!-- <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/> -->
-
-
-    <!-- <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping"> -->
-      <!-- <rosparam file="$(find challenge_husky)/param/mapper.yaml"/> -->
-      <!-- <rosparam>
-        odom_frame: odom
-        base_frame: base_link
-        map_frame: map
-        map_update_interval: 0.5 # Publish new map
-        maxUrange: 110 # Should be just less than sensor range
-        maxRange: 140 # Should be just greater than sensor range
-        particles: 100 # Increased from 80
-        # Update frequencies
-        linearUpdate: 0.3
-        angularUpdate: 0.5
-        temporalUpdate: 2.0
-        resampleThreshold: 0.5
-        # Initial Map Size
-        xmin: -100.0
-        ymin: -100.0
-        xmax: 100.0
-        ymax: 100.0
-        delta: 0.05
-        # All default
-        sigma: 0.05
-        kernelSize: 1
-        lstep: 0.05
-        astep: 0.05
-        iterations: 5
-        lsigma: 0.075
-        ogain: 3.0
-        lskip: 0
-        llsamplerange: 0.01
-        llsamplestep: 0.01
-        lasamplerange: 0.005
-        lasamplestep: 0.005
-      </rosparam>
-    </node> -->
-
-      <!-- Start the Operator to control the simulated robot -->
-    <!-- <node name="Operator" pkg="nav2d_operator" type="operator" >
-      <remap from="scan" to="base_scan"/>
-      <rosparam file="$(find nav2d_tutorials)/param/operator.yaml"/>
-      <rosparam file="$(find nav2d_tutorials)/param/costmap.yaml" ns="local_map" />
-    </node> -->
-
-
-    <!-- Start the Navigator to move the robot autonomously -->
-    <!-- <node name="Navigator" pkg="nav2d_navigator" type="navigator">
-      <rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
-    </node>
-
-    <node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
-    <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
-    <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> -->
-
-<!-- <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
-  <param name="robot_base_frame" value="base_link"/>
-  <param name="costmap_topic" value="map"/>
-  <param name="visualize" value="true"/>
-  <param name="planner_frequency" value="30.0"/>
-  <param name="progress_timeout" value="10.0"/>
-  <param name="potential_scale" value="5"/>
-  <param name="orientation_scale" value="0.0"/>
-  <param name="gain_scale" value="1.0"/>
-  <param name="transform_tolerance" value="0.3"/>
-  <param name="min_frontier_size" value="15"/>
-</node> -->
-
-<node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
-  <param name="robot_base_frame" value="base_link"/>
-  <param name="costmap_topic" value="map"/>
-  <param name="costmap_updates_topic" value="map_updates"/>
-  <param name="visualize" value="true"/>
-  <param name="planner_frequency" value="0.33"/>
-  <param name="progress_timeout" value="10.0"/>
-  <param name="potential_scale" value="3.0"/>
-  <param name="orientation_scale" value="0.0"/>
-  <param name="gain_scale" value="1.0"/>
-  <param name="transform_tolerance" value="0.3"/>
-  <param name="min_frontier_size" value="10"/>
-</node>
+  <node pkg="desafio" name="exploration" type="explore.py" output="screen" />
+  <!-- <node pkg="gazebo_light_sensor_plugin" name="robot_vision" type="controlvision.py" output="screen" /> -->
 
 </launch>

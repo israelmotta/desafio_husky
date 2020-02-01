@@ -1,13 +1,25 @@
 #!/usr/bin/env python2.7
 # Import ROS libraries and messages
 import rospy
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import Image, CameraInfo
 
 # Import OpenCV libraries and tools
-import cv2
+import cv2, time
 from cv_bridge import CvBridge, CvBridgeError
-from geometry_msgs.msg import Vector3
+from geometry_msgs.msg import Vector3, PoseStamped
+
 import numpy as np
+import math
+
+from controlvision import ControlVision
+
+
+mission_phase = None
+msg_move_to_goal = None
+flag = None
+timer_flag = None
+camera_info = None
+
 
 
 # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
@@ -19,6 +31,11 @@ bridge = CvBridge()
 # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
 pub_image = rospy.Publisher('camera/param', Vector3, queue_size=1)
 pub_imagedetec = rospy.Publisher('camera/detec', Image, queue_size=10)
+
+pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
+msg_move_to_goal = PoseStamped()
+camera_info = CameraInfo()
+flag = True
 
 
 # Define a function to show the image in an OpenCV Window
@@ -38,6 +55,7 @@ def image_callback(img_msg):
         rospy.logerr("CvBridge Error: {0}".format(e))
 
     # Copy the image
+
     img = cv_image.copy()
 
     # Convert to grayscale
@@ -119,10 +137,9 @@ def image_callback(img_msg):
 
             # How to calc focal dist
             #focalLength = (w * 2) / 1 #distancia focal = 940
-            focalLength = 940
-            dist = (1 * focalLength) / w
+            
             #rospy.loginfo(w)
-
+            move_to_goal(PontoCentralContorno[0], w)
 
             
     # Check the quantity of contours
@@ -141,12 +158,44 @@ def image_callback(img_msg):
     msg_frame = bridge.cv2_to_imgmsg(img_view, "bgr8")
     pub_imagedetec.publish(msg_frame)
 
+def move_to_goal(center, diam):
+    focalLength = 940
+    dist = (1 * focalLength) / diam
+    goto_y = -(center - camera_info.width)/ diam
+
+    if abs(goto_y) < 0.006:
+        goto_x = dist
+    else:
+        import pdb; pdb.set_trace()
+        goto_x = math.sqrt(dist**2 - goto_y**2)
+
+    msg_move_to_goal.pose.position.x = goto_x
+    msg_move_to_goal.pose.position.y = goto_y
+    msg_move_to_goal.pose.orientation.w = 1
+    msg_move_to_goal.header.frame_id = goto_y
+    if flag:
+        pub_move_to_goal.publish(msg_move_to_goal)
+        flag = False
+        timer_flag = time.time()
+    if time.time() - timer_flag > 10:
+        flag = True
+
+        print(' ' + str(dist) + ' ' + str(goto_x) + ' ' + str(goto_y))
+
+
+def pub_goto(self, x, y):
+    if mission_phase == None:
+        mission_phase = 1
+
 
 # Initalize a subscriber to the "/camera/rgb/image_raw" topic with the function "image_callback" as a callback
 sub_image = rospy.Subscriber("/diff/camera_top/image_raw", Image, image_callback)
+sub_image_info = rospy.Subscriber("/diff/camera_top/camera_info", CameraInfo, image_callback)
+
 
 # Initialize an OpenCV Window named "Image Window"
 cv2.namedWindow("Image Window", 1)
+
 
 # Loop to keep the program from shutting down unless ROS is shut down, or CTRL+C is pressed
 while not rospy.is_shutdown():
