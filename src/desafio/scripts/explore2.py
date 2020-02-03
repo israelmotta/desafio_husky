@@ -36,11 +36,6 @@ class Camera:
     self.start = time.time()
     # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
     rospy.init_node('opencv_camera', anonymous=True)
-    # controllers
-    self.linear_vel_control = Controller(5, -5, 0.01, 0, 0)
-    self.angular_vel_control = Controller(5, -5, 0.01, 0, 0)
-    # odometry topic subscription
-    rospy.Subscriber('/odometry/filtered', Odometry, self.callback_odometry)
     # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
     self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=10)
     # get camera info
@@ -78,7 +73,7 @@ class Camera:
     
     img = cv_image.copy()
 
-    AreaContourLimitMin = 100  # This value is empirical. Adjust it to your needs
+    AreaContourLimitMin = 200  # This value is empirical. Adjust it to your needs
 
     # Obtaining the image dimensions
     height = np.size(img,0)
@@ -131,7 +126,7 @@ class Camera:
         (x, y, w, h) = cv2.boundingRect(c)   #x and y: coordinates of the upper left vertex
                                                 #w and h: respectively width and height of the rectangle
 
-        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
       
         # Determines the center point of the contour and draws a circle to indicate
         CoordenadaXCentroContorno = int((x+x+w)/2)
@@ -152,7 +147,7 @@ class Camera:
           ContourQty = ContourQty + 1
 
 
-          cv2.putText(cv_image, 'BOMB HAS BEEN DETECTED!', (20, 130), font, 2, (0, 0, 255), 5)
+          cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
           # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
           #emphasizes the outline with a rectangle.
                    
@@ -167,16 +162,13 @@ class Camera:
           self.goal_move_base(centers[0][0], radius[0], width)
     
     # merge timer info to frame
-    cv2.putText(cv_image, str(timer) + 's', (20, 60), font, 2, (50, 255, 50), 5) 
-    cv2.putText(cv_image, str(time.ctime()), (10, 700), font, 2, (50, 255, 50), 6)
+    cv2.putText(img, str(timer) + 's', (20, 60), font, 2, (50, 255, 50), 5) 
+    cv2.putText(img, str(time.ctime()), (10, 700), font, 2, (50, 255, 50), 6)
     
     img_view = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # convert img to ros and pub image in a topic
     msg_frame = self.bridge.cv2_to_imgmsg(img_view, "bgr8")
     self.image_pub.publish(msg_frame)
-
-  def callback_odometry(self, data):
-    self.odometry_data = data
 
   def callback_camera_info(self, data):
     self.camera_info = data
@@ -187,13 +179,6 @@ class Camera:
     # simply keeps python from exiting until this node is stopped
     rospy.spin()
 
-  def cmd_vel_pub(self, linear, angular, frame):
-    cv2.putText(frame, 'Process: center alignment', (20, 640), cv2.FONT_HERSHEY_SIMPLEX, 2, (200, 0, 0), 3)
-    vel_msg = Twist()
-    vel_msg.linear.x = linear
-    vel_msg.angular.z = angular
-    self.velocity_publisher.publish(vel_msg)
-  
   def goal_move_base(self, center_ball, radius, image_size):
     distance = (1 * self.focalLength) / (radius * 2)
     y_move_base = -(center_ball - image_size/2) / (radius*2) 
@@ -217,45 +202,6 @@ class Camera:
     print('distance to sphere: ' + str(distance))
     print('INCREMENTO X: ' + str(x_move_base))
     print('INCREMENTO Y: ' + str(y_move_base))
-
-
-  def pub_move_base(self, x, y):
-    if self.mission_phase == None:
-      self.mission_phase = 1
-
-  #def move_base_pub(self, x, y, angle):
-    #coment
-
-class Controller:
-  sat_max = 0
-  sat_min = 0
-  kp = 0
-  ki = 0
-  kd = 0
-  error_integral = 0 
-  error_prev = 0 
-
-  def __init__ (self, sat_max, sat_min, kp, ki, kd):
-    self.sat_max = sat_max 
-    self.sat_min = sat_min 
-    self.kp = kp 
-    self.ki = ki 
-    self.kd = kd 
-    
-  def calculate(self, time, setpoint, process):
-    # set the error
-    self.error = setpoint - process
-    self.error_integral =+ self.error
-    # calculate the output
-    control_output = self.kp*self.error + self.ki*(self.error_integral)*time + self.kd*(self.error - self.error_prev)/time    
-    # using saturation max and min in control_output 
-    if (control_output > self.sat_max):
-      control_output = self.sat_max
-    elif (control_output < self.sat_min):
-      control_output = self.sat_min
-    # set error_prev for kd   
-    self.error_prev = self.error   
-    return control_output  
 
 # main function
 if __name__	== '__main__':
