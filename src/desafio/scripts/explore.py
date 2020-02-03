@@ -189,7 +189,7 @@ class Camera:
     else:
       if flag_pid == 0:
         x_move_base = math.sqrt(distance**2 - y_move_base**2)
-        self.msg_move_to_goal.pose.position.x = x_move_base - 2
+        self.msg_move_to_goal.pose.position.x = x_move_base
         self.msg_move_to_goal.pose.position.y = y_move_base
         self.msg_move_to_goal.pose.orientation.w = 1
         self.msg_move_to_goal.header.frame_id = "camera"
