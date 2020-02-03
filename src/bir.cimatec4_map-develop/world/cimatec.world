@@ -15,7 +15,7 @@
 
     <include>
       <uri>model://yellow_sphere</uri>
-      <pose>0 0 0.5 0 0 0</pose>
+      <pose>0 10 0.5 0 0 0</pose>
     </include>
 
     <!-- <model name='Construction Cone 00'>
