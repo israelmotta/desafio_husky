@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/desafio
+# Install script for directory: /home/isadora/desafio_husky/src/desafio
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/desafio/catkin_generated/installspace/desafio.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/desafio/catkin_generated/installspace/desafio.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/desafio/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/desafio/catkin_generated/installspace/desafioConfig.cmake"
-    "/home/israel/desafio_husky/build/desafio/catkin_generated/installspace/desafioConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/desafio/catkin_generated/installspace/desafioConfig.cmake"
+    "/home/isadora/desafio_husky/build/desafio/catkin_generated/installspace/desafioConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/desafio" TYPE FILE FILES "/home/israel/desafio_husky/src/desafio/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/desafio" TYPE FILE FILES "/home/isadora/desafio_husky/src/desafio/package.xml")
 endif()
 

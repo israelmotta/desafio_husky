@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "nav2d_navigator;nav2d_operator;roscpp;sensor_msgs".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "nav2d_remote"
-PROJECT_SPACE_DIR = "/home/israel/desafio_husky/devel"
+PROJECT_SPACE_DIR = "/home/isadora/desafio_husky/devel"
 PROJECT_VERSION = "0.4.2"

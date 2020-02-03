@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/velodyne_simulator/velodyne_description
+# Install script for directory: /home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,27 +38,27 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/velodyne_description/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_descriptionConfig.cmake"
-    "/home/israel/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_descriptionConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_descriptionConfig.cmake"
+    "/home/isadora/desafio_husky/build/velodyne_simulator/velodyne_description/catkin_generated/installspace/velodyne_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/velodyne_description" TYPE FILE FILES "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/velodyne_description" TYPE FILE FILES "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/velodyne_description" TYPE DIRECTORY FILES
-    "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/launch"
-    "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/meshes"
-    "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/rviz"
-    "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/urdf"
-    "/home/israel/desafio_husky/src/velodyne_simulator/velodyne_description/world"
+    "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/launch"
+    "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/meshes"
+    "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/rviz"
+    "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/urdf"
+    "/home/isadora/desafio_husky/src/velodyne_simulator/velodyne_description/world"
     )
 endif()
 

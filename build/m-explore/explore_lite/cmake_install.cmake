@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/m-explore/explore_lite
+# Install script for directory: /home/isadora/desafio_husky/src/m-explore/explore_lite
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_lite.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_lite.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/explore_lite/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_liteConfig.cmake"
-    "/home/israel/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_liteConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_liteConfig.cmake"
+    "/home/isadora/desafio_husky/build/m-explore/explore_lite/catkin_generated/installspace/explore_liteConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/explore_lite" TYPE FILE FILES "/home/israel/desafio_husky/src/m-explore/explore_lite/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/explore_lite" TYPE FILE FILES "/home/isadora/desafio_husky/src/m-explore/explore_lite/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -59,7 +59,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/explore_lite/explore"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/explore_lite" TYPE EXECUTABLE FILES "/home/israel/desafio_husky/devel/lib/explore_lite/explore")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/explore_lite" TYPE EXECUTABLE FILES "/home/isadora/desafio_husky/devel/lib/explore_lite/explore")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/explore_lite/explore" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/explore_lite/explore")
     file(RPATH_CHANGE
@@ -73,6 +73,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/explore_lite/launch" TYPE DIRECTORY FILES "/home/israel/desafio_husky/src/m-explore/explore_lite/launch/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/explore_lite/launch" TYPE DIRECTORY FILES "/home/isadora/desafio_husky/src/m-explore/explore_lite/launch/")
 endif()
 

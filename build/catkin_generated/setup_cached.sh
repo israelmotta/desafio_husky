@@ -7,6 +7,5 @@
 # new environment variables
 
 # modified environment variables
-export HUSKY_DESCRIPTION=""
-export HUSKY_GAZEBO_DESCRIPTION=""
-export PWD="/home/israel/desafio_husky/build"
+export PWD="/home/isadora/desafio_husky/build"
+export ROS_PACKAGE_PATH="/home/isadora/desafio_husky/src:/opt/ros/melodic/share"

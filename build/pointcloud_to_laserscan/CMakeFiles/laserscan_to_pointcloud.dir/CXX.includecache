@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/israel/desafio_husky/src/pointcloud_to_laserscan/include/pointcloud_to_laserscan/laserscan_to_pointcloud_nodelet.h
+/home/isadora/desafio_husky/src/pointcloud_to_laserscan/include/pointcloud_to_laserscan/laserscan_to_pointcloud_nodelet.h
 boost/thread/mutex.hpp
 -
 laser_geometry/laser_geometry.h
@@ -28,7 +28,7 @@ tf2_ros/message_filter.h
 tf2_ros/transform_listener.h
 -
 
-/home/israel/desafio_husky/src/pointcloud_to_laserscan/src/laserscan_to_pointcloud_nodelet.cpp
+/home/isadora/desafio_husky/src/pointcloud_to_laserscan/src/laserscan_to_pointcloud_nodelet.cpp
 pointcloud_to_laserscan/laserscan_to_pointcloud_nodelet.h
 -
 sensor_msgs/LaserScan.h

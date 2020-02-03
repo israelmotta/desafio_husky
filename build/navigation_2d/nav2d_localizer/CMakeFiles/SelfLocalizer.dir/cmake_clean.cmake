@@ -11,8 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SelfLocalizer.dir/src/map/map_store.c.o"
   "CMakeFiles/SelfLocalizer.dir/src/map/map_draw.c.o"
   "CMakeFiles/SelfLocalizer.dir/src/map/map_cspace.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/libSelfLocalizer.pdb"
-  "/home/israel/desafio_husky/devel/lib/libSelfLocalizer.so"
+  "/home/isadora/desafio_husky/devel/lib/libSelfLocalizer.pdb"
+  "/home/isadora/desafio_husky/devel/lib/libSelfLocalizer.so"
 )
 
 # Per-language clean rules from dependency scanning.

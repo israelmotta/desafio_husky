@@ -3,8 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/mapper.dir/src/SpaSolver.cpp.o"
   "CMakeFiles/mapper.dir/src/spa2d.cpp.o"
   "CMakeFiles/mapper.dir/src/csparse.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/nav2d_karto/mapper.pdb"
-  "/home/israel/desafio_husky/devel/lib/nav2d_karto/mapper"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_karto/mapper.pdb"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_karto/mapper"
 )
 
 # Per-language clean rules from dependency scanning.

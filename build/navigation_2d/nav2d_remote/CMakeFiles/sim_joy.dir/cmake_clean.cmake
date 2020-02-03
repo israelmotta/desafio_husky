@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sim_joy.dir/src/sim_joy.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/nav2d_remote/sim_joy.pdb"
-  "/home/israel/desafio_husky/devel/lib/nav2d_remote/sim_joy"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_remote/sim_joy.pdb"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_remote/sim_joy"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/israel/desafio_husky/src
+CMAKE_SOURCE_DIR = /home/isadora/desafio_husky/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/israel/desafio_husky/build
+CMAKE_BINARY_DIR = /home/isadora/desafio_husky/build
 
 # Include any dependencies generated for this target.
 include m-explore/explore_lite/CMakeFiles/explore.dir/depend.make
@@ -58,17 +58,17 @@ include m-explore/explore_lite/CMakeFiles/explore.dir/progress.make
 include m-explore/explore_lite/CMakeFiles/explore.dir/flags.make
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o: m-explore/explore_lite/CMakeFiles/explore.dir/flags.make
-m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o: /home/israel/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/israel/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/costmap_client.cpp.o -c /home/israel/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
+m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o: /home/isadora/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isadora/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o"
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/costmap_client.cpp.o -c /home/isadora/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/explore.dir/src/costmap_client.cpp.i"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/israel/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp > CMakeFiles/explore.dir/src/costmap_client.cpp.i
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isadora/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp > CMakeFiles/explore.dir/src/costmap_client.cpp.i
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/explore.dir/src/costmap_client.cpp.s"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/israel/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp -o CMakeFiles/explore.dir/src/costmap_client.cpp.s
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isadora/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp -o CMakeFiles/explore.dir/src/costmap_client.cpp.s
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o.requires:
 
@@ -82,17 +82,17 @@ m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o.provides.
 
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o: m-explore/explore_lite/CMakeFiles/explore.dir/flags.make
-m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o: /home/israel/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/israel/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/explore.cpp.o -c /home/israel/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
+m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o: /home/isadora/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isadora/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o"
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/explore.cpp.o -c /home/isadora/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/explore.dir/src/explore.cpp.i"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/israel/desafio_husky/src/m-explore/explore_lite/src/explore.cpp > CMakeFiles/explore.dir/src/explore.cpp.i
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isadora/desafio_husky/src/m-explore/explore_lite/src/explore.cpp > CMakeFiles/explore.dir/src/explore.cpp.i
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/explore.dir/src/explore.cpp.s"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/israel/desafio_husky/src/m-explore/explore_lite/src/explore.cpp -o CMakeFiles/explore.dir/src/explore.cpp.s
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isadora/desafio_husky/src/m-explore/explore_lite/src/explore.cpp -o CMakeFiles/explore.dir/src/explore.cpp.s
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o.requires:
 
@@ -106,17 +106,17 @@ m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o.provides.build: 
 
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o: m-explore/explore_lite/CMakeFiles/explore.dir/flags.make
-m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o: /home/israel/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/israel/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/frontier_search.cpp.o -c /home/israel/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
+m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o: /home/isadora/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isadora/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o"
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/explore.dir/src/frontier_search.cpp.o -c /home/isadora/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/explore.dir/src/frontier_search.cpp.i"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/israel/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp > CMakeFiles/explore.dir/src/frontier_search.cpp.i
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isadora/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp > CMakeFiles/explore.dir/src/frontier_search.cpp.i
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/explore.dir/src/frontier_search.cpp.s"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/israel/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp -o CMakeFiles/explore.dir/src/frontier_search.cpp.s
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isadora/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp -o CMakeFiles/explore.dir/src/frontier_search.cpp.s
 
 m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o.requires:
 
@@ -138,53 +138,53 @@ explore_OBJECTS = \
 # External object files for target explore
 explore_EXTERNAL_OBJECTS =
 
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/build.make
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libcostmap_2d.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/liblayers.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/liblaser_geometry.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libclass_loader.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/libPocoFoundation.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libdl.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroslib.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librospack.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libvoxel_grid.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf2_ros.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libactionlib.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libmessage_filters.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroscpp.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf2.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librostime.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libcpp_common.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/israel/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/israel/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable /home/israel/desafio_husky/devel/lib/explore_lite/explore"
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/explore.dir/link.txt --verbose=$(VERBOSE)
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/costmap_client.cpp.o
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/explore.cpp.o
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/src/frontier_search.cpp.o
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/build.make
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libcostmap_2d.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/liblayers.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/liblaser_geometry.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libclass_loader.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/libPocoFoundation.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libdl.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroslib.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librospack.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libvoxel_grid.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf2_ros.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libactionlib.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libmessage_filters.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroscpp.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libtf2.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/librostime.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /opt/ros/melodic/lib/libcpp_common.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/isadora/desafio_husky/devel/lib/explore_lite/explore: m-explore/explore_lite/CMakeFiles/explore.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/isadora/desafio_husky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable /home/isadora/desafio_husky/devel/lib/explore_lite/explore"
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/explore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-m-explore/explore_lite/CMakeFiles/explore.dir/build: /home/israel/desafio_husky/devel/lib/explore_lite/explore
+m-explore/explore_lite/CMakeFiles/explore.dir/build: /home/isadora/desafio_husky/devel/lib/explore_lite/explore
 
 .PHONY : m-explore/explore_lite/CMakeFiles/explore.dir/build
 
@@ -195,10 +195,10 @@ m-explore/explore_lite/CMakeFiles/explore.dir/requires: m-explore/explore_lite/C
 .PHONY : m-explore/explore_lite/CMakeFiles/explore.dir/requires
 
 m-explore/explore_lite/CMakeFiles/explore.dir/clean:
-	cd /home/israel/desafio_husky/build/m-explore/explore_lite && $(CMAKE_COMMAND) -P CMakeFiles/explore.dir/cmake_clean.cmake
+	cd /home/isadora/desafio_husky/build/m-explore/explore_lite && $(CMAKE_COMMAND) -P CMakeFiles/explore.dir/cmake_clean.cmake
 .PHONY : m-explore/explore_lite/CMakeFiles/explore.dir/clean
 
 m-explore/explore_lite/CMakeFiles/explore.dir/depend:
-	cd /home/israel/desafio_husky/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/israel/desafio_husky/src /home/israel/desafio_husky/src/m-explore/explore_lite /home/israel/desafio_husky/build /home/israel/desafio_husky/build/m-explore/explore_lite /home/israel/desafio_husky/build/m-explore/explore_lite/CMakeFiles/explore.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/isadora/desafio_husky/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/isadora/desafio_husky/src /home/isadora/desafio_husky/src/m-explore/explore_lite /home/isadora/desafio_husky/build /home/isadora/desafio_husky/build/m-explore/explore_lite /home/isadora/desafio_husky/build/m-explore/explore_lite/CMakeFiles/explore.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : m-explore/explore_lite/CMakeFiles/explore.dir/depend
 

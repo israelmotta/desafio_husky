@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/bir.cimatec4_map-develop
+# Install script for directory: /home/isadora/desafio_husky/src/bir.cimatec4_map-develop
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/gazebo_light_sensor_plugin
+# Install script for directory: /home/isadora/desafio_husky/src/gazebo_light_sensor_plugin
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_plugin.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_plugin.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gazebo_light_sensor_plugin/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_pluginConfig.cmake"
-    "/home/israel/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_pluginConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_pluginConfig.cmake"
+    "/home/isadora/desafio_husky/build/gazebo_light_sensor_plugin/catkin_generated/installspace/gazebo_light_sensor_pluginConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gazebo_light_sensor_plugin" TYPE FILE FILES "/home/israel/desafio_husky/src/gazebo_light_sensor_plugin/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gazebo_light_sensor_plugin" TYPE FILE FILES "/home/isadora/desafio_husky/src/gazebo_light_sensor_plugin/package.xml")
 endif()
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/explore_client.dir/src/explore_client.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/nav2d_navigator/explore_client.pdb"
-  "/home/israel/desafio_husky/devel/lib/nav2d_navigator/explore_client"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_navigator/explore_client.pdb"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_navigator/explore_client"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -67,14 +67,14 @@ set(gazebo_light_sensor_plugin_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(gazebo_light_sensor_plugin_SOURCE_PREFIX /home/israel/desafio_husky/src/gazebo_light_sensor_plugin)
-  set(gazebo_light_sensor_plugin_DEVEL_PREFIX /home/israel/desafio_husky/devel)
+  set(gazebo_light_sensor_plugin_SOURCE_PREFIX /home/isadora/desafio_husky/src/gazebo_light_sensor_plugin)
+  set(gazebo_light_sensor_plugin_DEVEL_PREFIX /home/isadora/desafio_husky/devel)
   set(gazebo_light_sensor_plugin_INSTALL_PREFIX "")
   set(gazebo_light_sensor_plugin_PREFIX ${gazebo_light_sensor_plugin_DEVEL_PREFIX})
 else()
   set(gazebo_light_sensor_plugin_SOURCE_PREFIX "")
   set(gazebo_light_sensor_plugin_DEVEL_PREFIX "")
-  set(gazebo_light_sensor_plugin_INSTALL_PREFIX /home/israel/desafio_husky/install)
+  set(gazebo_light_sensor_plugin_INSTALL_PREFIX /home/isadora/desafio_husky/install)
   set(gazebo_light_sensor_plugin_PREFIX ${gazebo_light_sensor_plugin_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(gazebo_light_sensor_plugin_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/israel/desafio_husky/src/gazebo_light_sensor_plugin/include " STREQUAL " ")
+if(NOT "/home/isadora/desafio_husky/src/gazebo_light_sensor_plugin/include " STREQUAL " ")
   set(gazebo_light_sensor_plugin_INCLUDE_DIRS "")
-  set(_include_dirs "/home/israel/desafio_husky/src/gazebo_light_sensor_plugin/include")
+  set(_include_dirs "/home/isadora/desafio_husky/src/gazebo_light_sensor_plugin/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/israel/desafio_husky/src/gazebo_light_sensor_plugin/include " STRE
         message(FATAL_ERROR "Project 'gazebo_light_sensor_plugin' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'gazebo_light_sensor_plugin' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/israel/desafio_husky/src/gazebo_light_sensor_plugin/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'gazebo_light_sensor_plugin' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/isadora/desafio_husky/src/gazebo_light_sensor_plugin/${idir}'.  ${_report}")
     endif()
     _list_append_unique(gazebo_light_sensor_plugin_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/israel/desafio_husky/devel/lib;/home/israel/desafio_husky/devel/lib;/home/israel/catkin_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/isadora/desafio_husky/devel/lib;/home/isadora/desafio_husky/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -67,14 +67,14 @@ set(pointcloud_to_laserscan_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(pointcloud_to_laserscan_SOURCE_PREFIX /home/israel/desafio_husky/src/pointcloud_to_laserscan)
-  set(pointcloud_to_laserscan_DEVEL_PREFIX /home/israel/desafio_husky/devel)
+  set(pointcloud_to_laserscan_SOURCE_PREFIX /home/isadora/desafio_husky/src/pointcloud_to_laserscan)
+  set(pointcloud_to_laserscan_DEVEL_PREFIX /home/isadora/desafio_husky/devel)
   set(pointcloud_to_laserscan_INSTALL_PREFIX "")
   set(pointcloud_to_laserscan_PREFIX ${pointcloud_to_laserscan_DEVEL_PREFIX})
 else()
   set(pointcloud_to_laserscan_SOURCE_PREFIX "")
   set(pointcloud_to_laserscan_DEVEL_PREFIX "")
-  set(pointcloud_to_laserscan_INSTALL_PREFIX /home/israel/desafio_husky/install)
+  set(pointcloud_to_laserscan_INSTALL_PREFIX /home/isadora/desafio_husky/install)
   set(pointcloud_to_laserscan_PREFIX ${pointcloud_to_laserscan_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(pointcloud_to_laserscan_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/israel/desafio_husky/src/pointcloud_to_laserscan/include " STREQUAL " ")
+if(NOT "/home/isadora/desafio_husky/src/pointcloud_to_laserscan/include " STREQUAL " ")
   set(pointcloud_to_laserscan_INCLUDE_DIRS "")
-  set(_include_dirs "/home/israel/desafio_husky/src/pointcloud_to_laserscan/include")
+  set(_include_dirs "/home/isadora/desafio_husky/src/pointcloud_to_laserscan/include")
   if(NOT "https://github.com/ros-perception/perception_pcl/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/ros-perception/perception_pcl/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://ros.org/wiki/perception_pcl " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/israel/desafio_husky/src/pointcloud_to_laserscan/include " STREQUA
         message(FATAL_ERROR "Project 'pointcloud_to_laserscan' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'pointcloud_to_laserscan' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/israel/desafio_husky/src/pointcloud_to_laserscan/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'pointcloud_to_laserscan' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/isadora/desafio_husky/src/pointcloud_to_laserscan/${idir}'.  ${_report}")
     endif()
     _list_append_unique(pointcloud_to_laserscan_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/israel/desafio_husky/devel/lib;/home/israel/desafio_husky/devel/lib;/home/israel/catkin_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/isadora/desafio_husky/devel/lib;/home/isadora/desafio_husky/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

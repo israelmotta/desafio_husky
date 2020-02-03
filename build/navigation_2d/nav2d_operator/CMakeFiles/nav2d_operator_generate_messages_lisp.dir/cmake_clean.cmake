@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/nav2d_operator_generate_messages_lisp"
-  "/home/israel/desafio_husky/devel/share/common-lisp/ros/nav2d_operator/msg/cmd.lisp"
+  "/home/isadora/desafio_husky/devel/share/common-lisp/ros/nav2d_operator/msg/cmd.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

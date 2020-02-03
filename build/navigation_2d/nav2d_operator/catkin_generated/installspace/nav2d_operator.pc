@@ -1,8 +1,8 @@
-prefix=/home/israel/desafio_husky/install
+prefix=/home/isadora/desafio_husky/install
 
 Name: nav2d_operator
 Description: Description of nav2d_operator
 Version: 0.4.2
-Cflags: -I/home/israel/desafio_husky/install/include
-Libs: -L/home/israel/desafio_husky/install/lib -lRobotOperator
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lRobotOperator
 Requires: roscpp message_runtime tf costmap_2d sensor_msgs

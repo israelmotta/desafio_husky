@@ -1,8 +1,8 @@
-prefix=/home/israel/desafio_husky/install
+prefix=/home/isadora/desafio_husky/install
 
 Name: gazebo_light_sensor_plugin
 Description: Description of gazebo_light_sensor_plugin
 Version: 0.0.0
-Cflags: -I/home/israel/desafio_husky/install/include
-Libs: -L/home/israel/desafio_husky/install/lib 
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
 Requires: gazebo_plugins gazebo_ros roscpp

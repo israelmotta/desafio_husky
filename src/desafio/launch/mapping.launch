@@ -5,8 +5,10 @@
   <!-- Show in Rviz   -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find desafio)/launch/husky.rviz"/>
 
-    <!--- Run gmapping -->
+    <!--- Run gmapping 
   <arg name="scan_topic" default="scan" />
+  <remap from="scan" to="$(arg scan_topic)"/>-->
+
 
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
     <rosparam>
@@ -48,7 +50,7 @@
       lasamplestep: 0.005
 
     </rosparam>
-    <remap from="scan" to="$(arg scan_topic)"/>
+    
   </node>
     <!--- Run Move Base -->
     <include file="$(find husky_navigation)/launch/move_base.launch" />
@@ -124,20 +126,22 @@
   <param name="min_frontier_size" value="15"/>
 </node> -->
 
-<node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
-  <param name="robot_base_frame" value="base_link"/>
-  <param name="costmap_topic" value="map"/>
-  <param name="costmap_updates_topic" value="map_updates"/>
-  <param name="visualize" value="true"/>
-  <param name="planner_frequency" value="0.33"/>
-  <param name="progress_timeout" value="5.0"/>
-  <param name="potential_scale" value="3.0"/>
-  <param name="orientation_scale" value="0.0"/>
-  <param name="gain_scale" value="1.0"/>
-  <param name="transform_tolerance" value="0.3"/>
-  <param name="min_frontier_size" value="10"/>
-</node>
+<rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
 
-<node pkg="desafio" name="exploration" type="explore.py" output="screen" />
+	<node name="Operator" pkg="nav2d_operator" type="operator" >
+		<remap from="scan" to="scan"/>
+		<rosparam file="$(find nav2d_tutorials)/param/operator.yaml"/>
+		<rosparam file="$(find nav2d_tutorials)/param/costmap.yaml" ns="local_map" />
+	</node>
+
+	<node name="Navigator" pkg="nav2d_navigator" type="navigator">
+		<rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
+	</node>
+
+	<node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
+	<node name="Explore" pkg="nav2d_navigator" type="explore_client" />
+	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> 
+
+<!--<node pkg="desafio" name="exploration" type="explore.py" output="screen" />-->
 
 </launch>

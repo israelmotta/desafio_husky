@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/include/explore/costmap_client.h
+/home/isadora/desafio_husky/src/m-explore/explore_lite/include/explore/costmap_client.h
 costmap_2d/costmap_2d.h
 -
 geometry_msgs/Pose.h
@@ -22,7 +22,7 @@ tf/tf.h
 tf/transform_listener.h
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/include/explore/costmap_tools.h
+/home/isadora/desafio_husky/src/m-explore/explore_lite/include/explore/costmap_tools.h
 costmap_2d/costmap_2d.h
 -
 geometry_msgs/PointStamped.h
@@ -32,7 +32,7 @@ geometry_msgs/PolygonStamped.h
 ros/ros.h
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/include/explore/explore.h
+/home/isadora/desafio_husky/src/m-explore/explore_lite/include/explore/explore.h
 memory
 -
 mutex
@@ -56,11 +56,11 @@ explore/costmap_client.h
 explore/frontier_search.h
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/include/explore/frontier_search.h
+/home/isadora/desafio_husky/src/m-explore/explore_lite/include/explore/frontier_search.h
 costmap_2d/costmap_2d.h
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
+/home/isadora/desafio_husky/src/m-explore/explore_lite/src/costmap_client.cpp
 explore/costmap_client.h
 -
 functional
@@ -70,13 +70,13 @@ mutex
 string
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
+/home/isadora/desafio_husky/src/m-explore/explore_lite/src/explore.cpp
 explore/explore.h
 -
 thread
 -
 
-/home/israel/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
+/home/isadora/desafio_husky/src/m-explore/explore_lite/src/frontier_search.cpp
 explore/frontier_search.h
 -
 mutex

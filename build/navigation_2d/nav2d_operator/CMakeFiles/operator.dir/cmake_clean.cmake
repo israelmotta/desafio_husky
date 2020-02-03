@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/operator.dir/src/node.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/nav2d_operator/operator.pdb"
-  "/home/israel/desafio_husky/devel/lib/nav2d_operator/operator"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_operator/operator.pdb"
+  "/home/isadora/desafio_husky/devel/lib/nav2d_operator/operator"
 )
 
 # Per-language clean rules from dependency scanning.

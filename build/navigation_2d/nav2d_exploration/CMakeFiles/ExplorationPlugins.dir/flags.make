@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC
 
 CXX_DEFINES = -DExplorationPlugins_EXPORTS -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"nav2d_exploration\"
 
-CXX_INCLUDES = -I/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration -I/home/israel/desafio_husky/devel/include -I/home/israel/desafio_husky/src/navigation_2d/nav2d_navigator/include -I/home/israel/desafio_husky/src/navigation_2d/nav2d_operator/include -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 
+CXX_INCLUDES = -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration -I/home/isadora/desafio_husky/devel/include -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_operator/include -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 
 
