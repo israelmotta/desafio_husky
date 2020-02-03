@@ -1,82 +1,95 @@
-#!/usr/bin/env python2.7
-# Import ROS libraries and messages
-import rospy
-from sensor_msgs.msg import Image, CameraInfo
+#!/usr/bin/env python 
 
-# Import OpenCV libraries and tools
-import cv2, time
-from cv_bridge import CvBridge, CvBridgeError
-from geometry_msgs.msg import Vector3, PoseStamped
-
-import numpy as np
+# libraries:
+import cv2
 import math
-
-from controlvision import ControlVision
+import time
+import rospy
+import numpy as np
+import os
+from std_msgs.msg import Int32
+from std_msgs.msg import String
+from sensor_msgs.msg import Image, CameraInfo
+from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Twist, Vector3
+from cv_bridge import CvBridge, CvBridgeError
+from move_base_msgs.msg import MoveBaseActionGoal
+from geometry_msgs.msg import PoseStamped
 from nav2d_navigator.msg import GetFirstMapActionGoal, ExploreActionGoal
 from actionlib_msgs.msg import GoalID 
 
-mission_phase = None
-msg_move_to_goal = None
-timer_flag = None
+# from controlvision import ControlVision
+
+from control_pid import ControlPid
+
+class Camera:
+  mission_phase = None
+  camera_info = None
+  msg_move_to_goal = None
+  flag = None
+  timer_flag = None
+  control_pid_x = None
+  control_pid_yaw = None
+  pub_cmd_vel = None
+
+  def __init__(self):
+    # focal length
+    self.focalLength = 937.8194580078125
+    # Initialize the CvBridge class
+    self.bridge = CvBridge()
+    # timer var
+    self.start = time.time()
+    # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
+    rospy.init_node('opencv_camera', anonymous=True)
+    # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
+    self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=10)
+    # get camera info
+    rospy.Subscriber("/diff/camera_top/camera_info", CameraInfo, self.callback_camera_info)
+    # move to goal 
+    self.pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
+    self.msg_move_to_goal = PoseStamped()
+    self.flag = True
+    self.camera_info = CameraInfo()
+
+    self.start_map = rospy.Publisher("/GetFirstMap/goal", GetFirstMapActionGoal, queue_size=1)
+    self.start_explore = rospy.Publisher("/Explore/goal", ExploreActionGoal, queue_size = 1)
+    self.cancel_map = rospy.Publisher("/GetFirstMap/cancel", GoalID, queue_size = 1)
+    self.cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
+    time.sleep(1)
+    self.start_map.publish()
+    time.sleep(5)
+    self.cancel_map.publish()
+    time.sleep(2)
+    self.start_explore.publish()
+    self.control_pid_x = ControlPid(5, -5, 0.01, 0, 0)
+    self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
+    self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
+    self.flag1 = False
 
 
+  # Define a callback for the Image message
+  def callback(self, img_msg):
+    # setup timer and font
+    timer = int(time.time() - self.start)
+    font = cv2.FONT_HERSHEY_SIMPLEX
 
-# Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
-rospy.init_node('opencv_camera', anonymous=True)
-
-# Initialize the CvBridge class
-bridge = CvBridge()
-
-# Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
-pub_image = rospy.Publisher('camera/param', Vector3, queue_size=1)
-pub_imagedetec = rospy.Publisher('camera/detec', Image, queue_size=10)
-
-pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
-
-start_map = rospy.Publisher("/GetFirstMap/goal", GetFirstMapActionGoal, queue_size=1)
-start_explore = rospy.Publisher("/Explore/goal", ExploreActionGoal, queue_size = 1)
-cancel_map = rospy.Publisher("/GetFirstMap/cancel", GoalID, queue_size = 1)
-cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
-time.sleep(1)
-start_map.publish()
-time.sleep(5)
-cancel_map.publish()
-time.sleep(2)
-start_explore.publish()
-
-flag_x = True
-
-
-# Define a function to show the image in an OpenCV Window
-def show_image(img):
-    cv2.imshow("Image Window", img)
-    cv2.waitKey(3)
-
-# Define a callback for the Image message
-def image_callback(img_msg):
-    # log some info about the image topic
-    # rospy.loginfo(img_msg.header)
 
     # Try to convert the ROS Image message to a CV2 Image
     try:
-        cv_image = bridge.imgmsg_to_cv2(img_msg, "passthrough")
+        cv_image = self.bridge.imgmsg_to_cv2(img_msg, "passthrough")
     except CvBridgeError, e:
         rospy.logerr("CvBridge Error: {0}".format(e))
-
-    # Copy the image
-
+    
     img = cv_image.copy()
 
-    # Convert to grayscale
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    AreaContourLimitMin = 100  # This value is empirical. Adjust it to your needs
+    AreaContourLimitMin = 3200  # This value is empirical. Adjust it to your needs
 
     # Obtaining the image dimensions
     height = np.size(img,0)
     width= np.size(img,1)
     ContourQty = 0
-     
+
+
     # Image processing
     
     # Define range
@@ -99,14 +112,18 @@ def image_callback(img_msg):
     kernel = np.ones((5 ,5), np.uint8)
     FrameBinarizado = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
 
-    # Finding contours
+    # find contours of image (cv2.CHAIN_APPROX_SIMPLE is for memory saves)
     _, cnts, _ = cv2.findContours(FrameBinarizado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # cv2.drawContours(img, cnts,-1,(255,0,255),3)
 
-    contour_list = []
-    coordinates = [-1, -1, -1]
+    contour_list = []    
+    ### CIRCLE DETECTION ###    
+    contours_poly = []
+    centers = []
+    radius = []   
+    coordinates = [-1, -1, -1]  
 
-    for c in cnts:
+    for index, c in enumerate(cnts):
         # If the area of the captured contour is small, nothing happens
         if cv2.contourArea(c) < AreaContourLimitMin:
             continue
@@ -114,104 +131,111 @@ def image_callback(img_msg):
         # area = cv2.contourArea(c)
 
         # Approximates a polygonal curve with the specified precision
-        approx = cv2.approxPolyDP(c,0.01*cv2.arcLength(c,True),True)
+        contours_poly.append(cv2.approxPolyDP(c,0.01*cv2.arcLength(c,True),True))
 
-        # Check vertices
-        if ((len(approx) > 8) & (len(approx) < 23)):
-
-
-            ContourQty = ContourQty + 1
-
-            # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
-            #emphasizes the outline with a rectangle.
-            (x, y, w, h) = cv2.boundingRect(c)   #x and y: coordinates of the upper left vertex
+        (x, y, w, h) = cv2.boundingRect(c)   #x and y: coordinates of the upper left vertex
                                                 #w and h: respectively width and height of the rectangle
 
-            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
       
-            # Determines the center point of the contour and draws a circle to indicate
-            CoordenadaXCentroContorno = int((x+x+w)/2)
-            CoordenadaYCentroContorno = int((y+y+h)/2)
-            PontoCentralContorno = (CoordenadaXCentroContorno,CoordenadaYCentroContorno)
-            cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
+        # Determines the center point of the contour and draws a circle to indicate
+        CoordenadaXCentroContorno = int((x+x+w)/2)
+        CoordenadaYCentroContorno = int((y+y+h)/2)
+        PontoCentralContorno = (CoordenadaXCentroContorno,CoordenadaYCentroContorno)
+        cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
+        coordinates = [PontoCentralContorno[0],PontoCentralContorno[1], w]
 
-            # Finds and draw a circle that indicates the contour
-            # (a, b) = cv2.minEnclosingCircle(c) # a and b: center and radius of the circle respectively
-            # rospy.loginfo("Center %d", b)
-            # cv2.circle(img, int(a), int(b), (0, 255, 0), 5)
-            
-            # Pass coordinates x, y and radius of circle to a variable 
-            coordinates = [PontoCentralContorno[0],PontoCentralContorno[1],  w]
-            # rospy.loginfo(coordinates)
 
-            # How to calc focal dist
-            #focalLength = (w * 2) / 1 #distancia focal = 940
-            
-            #rospy.loginfo(w)
-            move_to_goal(PontoCentralContorno[0], w, width)
+        centers.append(coordinates)
+        radius.append(w)     
+
+
+        # Check vertices
+        if ((len(contours_poly[index]) > 8) & (len(contours_poly[index]) < 23)):
 
             
-    # Check the quantity of contours
-    if (ContourQty > 0):
-        cv2.line(img, PontoCentralContorno,(int(width/2),CoordenadaYCentroContorno),(0,255,0),1)
-
-    img_view = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    # Resize image to show    
-    img_res = cv2.resize(img_view, (width/2, height/2)) 
-    # Show the converted image
-    # show_image(img_res)
-
-    # Publish coordinates and radius
-    pub_image.publish(coordinates[0], coordinates[1], coordinates[2])
-    # Publish image
-    msg_frame = bridge.cv2_to_imgmsg(img_view, "bgr8")
-    pub_imagedetec.publish(msg_frame)
-
-def move_to_goal(center, diam, width):
-    focalLength = 940
-    dist = (1 * focalLength) / diam
-    goto_y = -(center - width)/ diam
-
-    if abs(goto_y) < 0.006:
-        goto_x = dist
-
-    else:
-        goto_x = math.sqrt(dist**2 - goto_y**2)
+          ContourQty = ContourQty + 1
 
 
-    msg_move_to_goal = PoseStamped()
-    msg_move_to_goal.pose.position.x = goto_x - 2
-    msg_move_to_goal.pose.position.y = goto_y
-    msg_move_to_goal.pose.orientation.w = 1
-    msg_move_to_goal.header.frame_id = 'camera'
-    # pub a best rout to move base if distance is < 4m
-    if flag_x == True and (distance > 4):
-        pub_move_to_goal.publish(msg_move_to_goal)
-        flag_x = False
-        timer_flag = time.time()
-        cancel_explore.publish()
-        os.system("rosnode kill /Operator")
-        time.sleep(1)  
-    if time.time() - timer_flag > 5:
-        flag_x = True
+          cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
+          # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
+          #emphasizes the outline with a rectangle.
+                   
+
+          # Finds and draw a circle that indicates the contour
+          # (a, b) = cv2.minEnclosingCircle(c) # a and b: center and radius of the circle respectively
+          # rospy.loginfo("Center %d", b)
+          # cv2.circle(img, int(a), int(b), (0, 255, 0), 5)
+          
+          # Pass coordinates x, y and radius of circle to a variable 
+          
+          self.goal_move_base(centers[0][0], radius[0], width, coordinates[0], coordinates[2])
     
-    import pdb; pdb.set_trace()
+    # merge timer info to frame
+    cv2.putText(img, str(timer) + 's', (20, 60), font, 2, (50, 255, 50), 5) 
+    cv2.putText(img, str(time.ctime()), (10, 700), font, 2, (50, 255, 50), 6)
+    
+    img_view = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # convert img to ros and pub image in a topic
+    msg_frame = self.bridge.cv2_to_imgmsg(img_view, "bgr8")
+    self.image_pub.publish(msg_frame)
 
-    print(' ' + str(dist) + ' ' + str(goto_x) + ' ' + str(goto_y))
+  def callback_camera_info(self, data):
+    self.camera_info = data
 
-
-def pub_goto(self, x, y):
-    if mission_phase == None:
-        mission_phase = 1
-
-
-# Initalize a subscriber to the "/camera/rgb/image_raw" topic with the function "image_callback" as a callback
-sub_image = rospy.Subscriber("/diff/camera_top/image_raw", Image, image_callback)
-
-# Initialize an OpenCV Window named "Image Window"
-cv2.namedWindow("Image Window", 1)
-
-
-# Loop to keep the program from shutting down unless ROS is shut down, or CTRL+C is pressed
-while not rospy.is_shutdown():
+  def listener(self):
+    # subscribe to a topic
+    rospy.Subscriber('/diff/camera_top/image_raw', Image, self.callback)  
+    # simply keeps python from exiting until this node is stopped
     rospy.spin()
+
+  def goal_move_base(self, center_ball, radius, image_size, coor_x, coor_z):
+    distance = (1 * self.focalLength) / (radius * 2)
+    y_move_base = -(center_ball - image_size/2) / (radius*2) 
+    flag_pid = 0
+    if abs(y_move_base) < 0.006:
+      x_move_base = distance
+    else:
+      if flag_pid == 0:
+        x_move_base = math.sqrt(distance**2 - y_move_base**2)
+        self.msg_move_to_goal.pose.position.x = x_move_base - 2
+        self.msg_move_to_goal.pose.position.y = y_move_base
+        self.msg_move_to_goal.pose.orientation.w = 1
+        self.msg_move_to_goal.header.frame_id = "camera"
+        # import pdb; pdb.set_trace()
+
+    if self.flag:
+      self.cancel_explore.publish()
+      os.system("rosnode kill /explore")
+      self.pub_move_to_goal.publish(self.msg_move_to_goal)
+      self.flag = False
+      self.timer_flag = time.time()
+      self.flag1 = True
+    if time.time() - self.timer_flag > 5:
+      self.flag = True
+
+      if x_move_base < 5 and y_move_base < 4:
+        self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+        if coor_x != -1:
+          msg_twist = Twist()
+          msg_twist.angular.z = self.control_pid_yaw.pid_calculate(0.5, image_size/2, int(coor_x))
+          msg_twist.linear.x = self.control_pid_x.pid_calculate(0.5, 360, int(coor_z))
+          self.pub_cmd_vel.publish(msg_twist)
+          self.cancel_move_base.publish()
+          flag_pid = 1
+
+    print('distance to sphere: ' + str(distance))
+    print('INCREMENTO X: ' + str(x_move_base))
+    print('INCREMENTO Y: ' + str(y_move_base))
+
+    if self.flag1:
+      self.pub_move_to_goal.publish(msg_move_to_goal)
+      self.flag1 = False
+
+# main function
+if __name__	== '__main__':
+  try:
+    cam_print = Camera()  
+    cam_print.listener()  
+  except rospy.ROSInterruptException:
+    pass

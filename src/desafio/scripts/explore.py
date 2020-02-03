@@ -51,19 +51,10 @@ class Camera:
     self.flag = True
     self.camera_info = CameraInfo()
 
-    self.start_map = rospy.Publisher("/GetFirstMap/goal", GetFirstMapActionGoal, queue_size=1)
-    self.start_explore = rospy.Publisher("/Explore/goal", ExploreActionGoal, queue_size = 1)
-    self.cancel_map = rospy.Publisher("/GetFirstMap/cancel", GoalID, queue_size = 1)
-    self.cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
-    time.sleep(1)
-    self.start_map.publish()
-    time.sleep(5)
-    self.cancel_map.publish()
-    time.sleep(2)
-    self.start_explore.publish()
     self.control_pid_x = ControlPid(5, -5, 0.01, 0, 0)
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
     self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
+    self.flag1 = True
 
 
   # Define a callback for the Image message
@@ -81,7 +72,7 @@ class Camera:
     
     img = cv_image.copy()
 
-    AreaContourLimitMin = 400  # This value is empirical. Adjust it to your needs
+    AreaContourLimitMin = 3200  # This value is empirical. Adjust it to your needs
 
     # Obtaining the image dimensions
     height = np.size(img,0)
@@ -169,6 +160,7 @@ class Camera:
           # Pass coordinates x, y and radius of circle to a variable 
           
           self.goal_move_base(centers[0][0], radius[0], width, coordinates[0], coordinates[2])
+          os.system("rosnode kill /explore")
     
     # merge timer info to frame
     cv2.putText(img, str(timer) + 's', (20, 60), font, 2, (50, 255, 50), 5) 
@@ -203,17 +195,25 @@ class Camera:
         self.msg_move_to_goal.header.frame_id = "camera"
         # import pdb; pdb.set_trace()
 
-      if self.flag:
-        self.cancel_explore.publish()
-        os.system("rosnode kill /Operator")
-        time.sleep(1)  
-        self.pub_move_to_goal.publish(self.msg_move_to_goal)
-        self.flag = False
-        self.timer_flag = time.time()
-      if time.time() - self.timer_flag > 5:
-        self.flag = True
 
-      if x_move_base < 5 and y_move_base < 1:
+    self.cont +=1
+    # pub values on move_base or use controller for best position
+    # if self.flag1 and distance > 30 and sel:
+    #   self.move_base_pub.publish(msg_move_to_goal)
+    #   self.flag1 = False
+    if self.flag1 and self.cont == 100:
+      self.pub_move_to_goal.publish(msg_move_to_goal)
+      self.flag1 = False
+      self.cont = 0
+
+
+    self.timer_flag = time.time()
+    
+      # self.flag1 = True
+    if time.time() - self.timer_flag > 5:
+      self.flag = True
+
+      if x_move_base < 6 and y_move_base < 4:
         self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
         if coor_x != -1:
           msg_twist = Twist()
@@ -226,6 +226,11 @@ class Camera:
     print('distance to sphere: ' + str(distance))
     print('INCREMENTO X: ' + str(x_move_base))
     print('INCREMENTO Y: ' + str(y_move_base))
+
+    # if self.flag1:
+    #   # self.cancel_move_base.publish()
+    #   self.pub_move_to_goal.publish(msg_move_to_goal)
+    #   self.flag1 = False
 
 # main function
 if __name__	== '__main__':
