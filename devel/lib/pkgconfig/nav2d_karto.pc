@@ -1,8 +1,0 @@
-prefix=/home/isadora/desafio_husky/devel
-
-Name: nav2d_karto
-Description: Description of nav2d_karto
-Version: 0.4.2
-Cflags: -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_karto/include
-Libs: -L${prefix}/lib -lOpenKarto -lMultiMapper
-Requires: roscpp tf nav_msgs geometry_msgs visualization_msgs nav2d_msgs nav2d_localizer
