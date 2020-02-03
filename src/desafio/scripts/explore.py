@@ -192,7 +192,7 @@ class Camera:
     self.msg_move_to_goal.header.frame_id = "camera"
     if self.flag:
       self.cancel_explore.publish()
-      os.system("rosnode kill /explore")
+      os.system("rosnode kill /Operator")
       time.sleep(1)  
       self.pub_move_to_goal.publish(self.msg_move_to_goal)
       self.flag = False
@@ -202,14 +202,6 @@ class Camera:
     print('distance to sphere: ' + str(distance))
     print('INCREMENTO X: ' + str(x_move_base))
     print('INCREMENTO Y: ' + str(y_move_base))
-
-
-  def pub_move_base(self, x, y):
-    if self.mission_phase == None:
-      self.mission_phase = 1
-
-  #def move_base_pub(self, x, y, angle):
-    #coment
 
 # main function
 if __name__	== '__main__':
