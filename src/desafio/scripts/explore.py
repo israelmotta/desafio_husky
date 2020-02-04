@@ -55,6 +55,7 @@ class Camera:
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
     self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
     self.flag1 = True
+    self.cont = 0
 
 
   # Define a callback for the Image message
@@ -196,15 +197,15 @@ class Camera:
         # import pdb; pdb.set_trace()
 
 
-    self.cont +=1
-    # pub values on move_base or use controller for best position
-    # if self.flag1 and distance > 30 and sel:
-    #   self.move_base_pub.publish(msg_move_to_goal)
-    #   self.flag1 = False
-    if self.flag1 and self.cont == 100:
-      self.pub_move_to_goal.publish(msg_move_to_goal)
-      self.flag1 = False
-      self.cont = 0
+      self.cont +=1
+      # pub values on move_base or use controller for best position
+      # if self.flag1 and distance > 30 and sel:
+      #   self.move_base_pub.publish(msg_move_to_goal)
+      #   self.flag1 = False
+      if self.cont == 100:
+        self.pub_move_to_goal.publish(msg_move_to_goal)
+        self.flag1 = False
+        self.cont = 0
 
 
     self.timer_flag = time.time()
