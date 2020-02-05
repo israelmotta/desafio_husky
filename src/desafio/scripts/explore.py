@@ -129,8 +129,8 @@ class Camera:
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
       
         # Determines the center point of the contour and draws a circle to indicate
-        CoordenadaXCentroContorno = int((x+x+w)/2)
-        CoordenadaYCentroContorno = int((y+y+h)/2)
+        CoordenadaXCentroContorno = (x+x+w)/2
+        CoordenadaYCentroContorno = (y+y+h)/2
         PontoCentralContorno = (CoordenadaXCentroContorno,CoordenadaYCentroContorno)
         cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
         coordinates = [PontoCentralContorno[0],PontoCentralContorno[1], w]
@@ -142,7 +142,7 @@ class Camera:
 
         # Check vertices
         if ((len(contours_poly[index]) > 8) & (len(contours_poly[index]) < 23)):
-
+          os.system("rosnode kill /explore")    
             
           ContourQty = ContourQty + 1
 
@@ -171,7 +171,7 @@ class Camera:
     
     img_view = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # convert img to ros and pub image in a topic
-    msg_frame = self.bridge.cv2_to_imgmsg(img_view, "bgr8")
+    msg_frame = self.bridge.cv2_to_imgmsg(cv_image, "bgr8") #img_view
     self.image_pub.publish(msg_frame)
 
   def callback_camera_info(self, data):
@@ -186,7 +186,7 @@ class Camera:
   def goal_move_base(self, center_ball, radius, image_size, coor_x, coor_z):
     distance = (1 * self.focalLength) / (radius * 2)
     y_move_base = -(center_ball - image_size/2) / (radius*2) 
-    flag_pid = 0
+    #flag_pid = 0
     
     if abs(y_move_base) < 0.006:
       x_move_base = distance
@@ -200,7 +200,7 @@ class Camera:
     # import pdb; pdb.set_trace()
 
     if self.flag:
-      os.system("rosnode kill /explore")
+      
       self.cont += 1
       print('kill' + str(self.cont))
       # pub values on move_base or use controller for best position
