@@ -25,10 +25,10 @@
       temporalUpdate: 2.0
       resampleThreshold: 0.5
       # Initial Map Size
-      xmin: -80.0
-      ymin: -80.0
-      xmax: 80.0
-      ymax: 80.0
+      xmin: -30.0
+      ymin: -40.0
+      xmax: 100.0
+      ymax: 50.0
       delta: 0.05
       # All default
       sigma: 0.05

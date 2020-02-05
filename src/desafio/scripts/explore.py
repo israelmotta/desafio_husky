@@ -44,6 +44,7 @@ class Camera:
     rospy.init_node('opencv_camera', anonymous=True)
     # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
     self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=10)
+    self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
     # get camera info
     rospy.Subscriber("/diff/camera_top/camera_info", CameraInfo, self.callback_camera_info)
     # move to goal 
@@ -145,8 +146,12 @@ class Camera:
             
           ContourQty = ContourQty + 1
 
+          if self.flag:
+            cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
+          else:
+            if self.mission:
+              cv2.putText(img, 'MISSION FINISHED', (20, 130), font, 2, (0, 0, 255), 5)
 
-          cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
           # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
           #emphasizes the outline with a rectangle.
                    
@@ -202,26 +207,21 @@ class Camera:
       # if self.flag1 and distance > 30 and sel:
       #   self.move_base_pub.publish(msg_move_to_goal)
       #   self.flag1 = False
-      if self.cont == 30:
+      if self.cont == 15:
         if flag_pid == 0:
-          print('kill')
+          # print('kill')
           self.pub_move_to_goal.publish(self.msg_move_to_goal)
           self.cont = 0
-
-      self.timer_flag = time.time()
-    if time.time() - self.timer_flag > 5:
-      self.flag = True
-
-    if x_move_base < 5 and -3 < y_move_base < 3:
-      self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
-      if coor_x != -1:
-        msg_twist = Twist()
-        msg_twist.angular.z = self.control_pid_yaw.pid_calculate(0.005, image_size/2, int(coor_x))
-        msg_twist.linear.x = self.control_pid_x.pid_calculate(0.001, 360, int(coor_z))
-        self.pub_cmd_vel.publish(msg_twist)
-        self.cancel_move_base.publish()
-        flag_pid = 1
-        # cv2.putText(img, 'MISSION FINISHED', (20, 150), font, 2, (0, 0, 255), 5)
+    
+    if x_move_base < 5 and -3 < y_move_base < 3 and coor_x != -1:
+      self.flag = False
+      self.cancel_move_base.publish()
+      msg_twist = Twist()
+      msg_twist.angular.z = self.control_pid_yaw.pid_calculate(0.005, image_size/2, int(coor_x))
+      msg_twist.linear.x = self.control_pid_x.pid_calculate(0.001, 360, int(coor_z))
+      self.pub_cmd_vel.publish(msg_twist)
+      flag_pid = 1
+      self.mission = True
 
     print('distance to sphere: ' + str(distance))
     print('INCREMENTO X: ' + str(x_move_base))

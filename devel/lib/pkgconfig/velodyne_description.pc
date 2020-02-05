@@ -1,8 +1,0 @@
-prefix=/home/israel/desafio_husky/devel
-
-Name: velodyne_description
-Description: Description of velodyne_description
-Version: 1.0.9
-Cflags: 
-Libs: -L/home/israel/desafio_husky/devel/lib 
-Requires: 
