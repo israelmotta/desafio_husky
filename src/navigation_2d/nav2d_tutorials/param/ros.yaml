@@ -2,7 +2,7 @@
 # Defines topics services and frames for all modules
 
 ### TF frames #############################################
-laser_frame: velodyne
+laser_frame: base_laser_link
 robot_frame: base_link
 odometry_frame: odom
 offset_frame: offset
@@ -10,7 +10,7 @@ map_frame: map
 
 ### ROS topics ############################################
 map_topic: map
-laser_topic: scan
+laser_topic: base_scan
 
 ### ROS services ##########################################
-map_service: dynamic_map
+map_service: static_map

@@ -12,6 +12,7 @@ Panels:
         - /Navigation1/Static Map1
         - /Navigation1/Global Costmap1
         - /Navigation1/Local Costmap1
+        - /Image1
       Splitter Ratio: 0.49492400884628296
     Tree Height: 346
   - Class: rviz/Selection
@@ -419,21 +420,9 @@ Visualization Manager:
       Marker Topic: /Navigator/markers
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
-    - Class: rviz/Image
-      Enabled: false
-      Image Topic: /camera/mission
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: false
     - Class: rviz/Image
       Enabled: true
       Image Topic: /camera/param
@@ -446,6 +435,18 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Class: rviz/Image
+      Enabled: false
+      Image Topic: /camera/param
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: false
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.10000000149011612
@@ -487,16 +488,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 36.686256408691406
+      Distance: 11.919816970825195
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 37.13726806640625
-        Y: 13.018522262573242
-        Z: -4.928709506988525
+        X: 12.089850425720215
+        Y: 13.18000316619873
+        Z: 3.7038686275482178
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false

@@ -33,9 +33,10 @@ class Camera:
   pub_cmd_vel = None
   cont = 0
 
+
   def __init__(self):
     # focal length
-    self.focalLength = 878 #937.8194580078125
+    self.focalLength = 937.8194580078125
     # Initialize the CvBridge class
     self.bridge = CvBridge()
     # timer var
@@ -43,16 +44,17 @@ class Camera:
     # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
     rospy.init_node('opencv_camera', anonymous=True)
     # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
-    self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=1)
-    self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+    self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=10)
     # get camera info
     rospy.Subscriber("/diff/camera_top/camera_info", CameraInfo, self.callback_camera_info)
+
+    self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
     # move to goal 
     self.pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
     self.msg_move_to_goal = PoseStamped()
     self.flag = True
     self.camera_info = CameraInfo()
-    self.control_pid_x = ControlPid(5, -5, 0.005, 0, 0)
+    self.control_pid_x = ControlPid(5, -5, 0.01, 0, 0)
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
     self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
     self.controller_flag = False
@@ -68,12 +70,12 @@ class Camera:
     time.sleep(5)
     self.cancel_map.publish()
     time.sleep(2)
-    # self.msg_move_to_goal.pose.position.x = 30
-    # self.msg_move_to_goal.pose.position.y = -2
-    # self.msg_move_to_goal.pose.orientation.w = 1
-    # self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
-    # self.pub_move_to_goal.publish(self.msg_move_to_goal)
-    # self.start_explore.publish()
+    self.msg_move_to_goal.pose.position.x = 30
+    self.msg_move_to_goal.pose.position.y = -2
+    self.msg_move_to_goal.pose.orientation.w = 1
+    self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
+    self.pub_move_to_goal.publish(self.msg_move_to_goal)
+    self.start_explore.publish()
     self.timer_flag = time.time()
 
   # Define a callback for the Image message
@@ -85,13 +87,13 @@ class Camera:
 
     # Try to convert the ROS Image message to a CV2 Image
     try:
-        cv_image = self.bridge.imgmsg_to_cv2(img_msg, "bgr8")
+        cv_image = self.bridge.imgmsg_to_cv2(img_msg, "passthrough")
     except CvBridgeError, e:
         rospy.logerr("CvBridge Error: {0}".format(e))
     
     img = cv_image.copy()
 
-    AreaContourLimitMin = 100  # This value is empirical. Adjust it to your needs
+    AreaContourLimitMin = 600  # This value is empirical. Adjust it to your needs
 
     # Obtaining the image dimensions
     height = np.size(img,0)
@@ -106,9 +108,9 @@ class Camera:
     rangomax = np.array([32, 255, 255]) # B, G, R
 
     # Converts images from RGB to BGR 
-    # img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # Converts images from BGR to HSV 
-    img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    img_hsv = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2HSV)
     
     # Here we are defining range of bluecolor in HSV 
     # This creates a mask of blue coloured  
@@ -140,25 +142,33 @@ class Camera:
         # area = cv2.contourArea(c)
 
         # Approximates a polygonal curve with the specified precision
-        contours_poly.append(cv2.approxPolyDP(c, 0.009 * cv2.arcLength(c, True), True))
-        aux1, aux2 = cv2.minEnclosingCircle(contours_poly[index])
-        centers.append(aux1)
-        radius.append(aux2) 
+        contours_poly.append(cv2.approxPolyDP(c,0.01*cv2.arcLength(c,True),True))
+
+        (x, y, w, h) = cv2.boundingRect(c)   #x and y: coordinates of the upper left vertex
+                                                #w and h: respectively width and height of the rectangle
+
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+      
+        # Determines the center point of the contour and draws a circle to indicate
+        CoordenadaXCentroContorno = int((x+x+w)/2)
+        CoordenadaYCentroContorno = int((y+y+h)/2)
+        PontoCentralContorno = (CoordenadaXCentroContorno,CoordenadaYCentroContorno)
+        cv2.circle(img, PontoCentralContorno, 1, (0, 0, 0), 5)
+        coordinates = [PontoCentralContorno[0],PontoCentralContorno[1], w]
+
+
+        centers.append(coordinates)
+        radius.append(w)     
+
 
         # Check vertices
         if ((len(contours_poly[index]) > 8) & (len(contours_poly[index]) < 23)):
-          cv2.circle(img, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5)   
 
-          # os.system("rosnode kill /explore")    
             
           ContourQty = ContourQty + 1
 
-          if self.flag:
-            cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
-          else:
-            if self.mission:
-              cv2.putText(img, 'MISSION FINISHED', (20, 130), font, 2, (0, 0, 255), 5)
 
+          cv2.putText(img, 'SPHERE DETECTED', (20, 130), font, 2, (0, 0, 255), 5)
           # Obtain contour coordinates (in fact, from a rectangle that can cover the entire contour) and
           #emphasizes the outline with a rectangle.
                    
@@ -170,7 +180,7 @@ class Camera:
           
           # Pass coordinates x, y and radius of circle to a variable 
           
-          self.goal_move_base(centers[0][0], radius[0], width)
+          self.goal_move_base(centers[0][0], radius[0], width, coordinates[0], coordinates[2])
     
     # merge timer info to frame
     cv2.putText(img, str(timer) + 's', (20, 60), font, 2, (50, 255, 50), 5) 
@@ -178,7 +188,7 @@ class Camera:
     
     img_view = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # convert img to ros and pub image in a topic
-    msg_frame = self.bridge.cv2_to_imgmsg(img, "bgr8")
+    msg_frame = self.bridge.cv2_to_imgmsg(img_view, "bgr8")
     self.image_pub.publish(msg_frame)
 
   def callback_camera_info(self, data):
@@ -190,10 +200,10 @@ class Camera:
     # simply keeps python from exiting until this node is stopped
     rospy.spin()
 
-  def goal_move_base(self, center_ball, radius, image_size):
-    distance = (1 * self.focalLength) / (radius*2)
+  def goal_move_base(self, center_ball, radius, image_size, coor_x, coor_z):
+    distance = (1 * self.focalLength) / (radius * 2)
     y_move_base = -(center_ball - image_size/2) / (radius*2) 
-    # flag_pid = 0
+    flag_pid = 0
     
     if abs(y_move_base) < 0.006:
       x_move_base = distance
@@ -204,40 +214,39 @@ class Camera:
     self.msg_move_to_goal.pose.position.y = y_move_base
     self.msg_move_to_goal.pose.orientation.w = 1
     self.msg_move_to_goal.header.frame_id = "camera"
-    # print((radius * KNOWN_DISTANCE) / KNOWN_WIDTH)
     # import pdb; pdb.set_trace()
 
-    # if self.flag: 
-    self.cont += 1
-    print('kill' + str(self.cont))
-    # pub values on move_base or use controller for best position
-    # if self.flag1 and distance > 30 and sel:
-    #   self.move_base_pub.publish(msg_move_to_goal)
-    #   self.flag1 = False
-    
-    if self.cont == 30:
-      # if self.controller_flag == False:
-      # if flag_pid == 0:
-        # print('kill')
-        # self.cancel_move_base.publish()
-      self.pub_move_to_goal.publish(self.msg_move_to_goal)
-      self.cont = 0
-    
-    # if x_move_base < 5 and -3 < y_move_base < 3 and center_ball != -1:
-    if distance < 5 :
-      # self.flag = False
-      # self.cancel_move_base.publish()
+    if self.flag:
+      # os.system("rosnode kill /Operator")
+      self.cont += 1
+      print('kill' + str(self.cont))
+      # pub values on move_base or use controller for best position
+      # if self.flag1 and distance > 30 and sel:
+      #   self.move_base_pub.publish(msg_move_to_goal)
+      #   self.flag1 = False
+      if self.cont == 30:
+        if self.controller_flag == False:
+          print('kill')
+          self.pub_move_to_goal.publish(self.msg_move_to_goal)
+          self.cont = 0
+          self.timer_flag = time.time()
+    if time.time() - self.timer_flag > 5:
+      self.flag = True
+    if distance < 5:
       self.controller_flag = True
       self.cancel_move_base.publish()
 
-      
     if self.controller_flag:
       msg_twist = Twist()
-      msg_twist.angular.z = self.control_pid_yaw.pid_calculate(1, image_size/2, center_ball)
-      msg_twist.linear.x = self.control_pid_x.pid_calculate(1, 175, radius)
+      msg_twist.angular.z = self.control_pid_yaw.pid_calculate(1, image_size/2, int(coor_x))
+      msg_twist.linear.x = self.control_pid_x.pid_calculate(1, 180, radius)
       self.pub_cmd_vel.publish(msg_twist)
-      # flag_pid = 1
-      self.mission = True
+    
+
+
+      
+          
+        # cv2.putText(img, 'MISSION FINISHED', (20, 150), font, 2, (0, 0, 255), 5)
 
     print('distance to sphere: ' + str(distance))
     print('INCREMENTO X: ' + str(x_move_base))
