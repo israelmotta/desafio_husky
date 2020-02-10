@@ -43,7 +43,7 @@ class Camera:
     # Initialize the ROS Node named 'opencv_camera', allow multiple nodes to be run with this name
     rospy.init_node('opencv_camera', anonymous=True)
     # Initalize a publisher to the "/camera/param" topic with the function "image_callback" as a callback
-    self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=10)
+    self.image_pub = rospy.Publisher('/camera/param', Image, queue_size=1)
     self.pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
     # get camera info
     rospy.Subscriber("/diff/camera_top/camera_info", CameraInfo, self.callback_camera_info)
@@ -51,11 +51,31 @@ class Camera:
     self.pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
     self.msg_move_to_goal = PoseStamped()
     self.flag = True
+    self.mission = False
     self.camera_info = CameraInfo()
-    self.control_pid_x = ControlPid(5, -5, 0.01, 0, 0)
+    self.control_pid_x = ControlPid(5, -5, 0.005, 0, 0)
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
     self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
+    self.controller_flag = False
 
+    self.start_map = rospy.Publisher("/GetFirstMap/goal", GetFirstMapActionGoal, queue_size=1)
+    self.start_explore = rospy.Publisher("/Explore/goal", ExploreActionGoal, queue_size = 1)
+    self.cancel_map = rospy.Publisher("/GetFirstMap/cancel", GoalID, queue_size = 1)
+    self.cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
+    self.cancel_move_base = rospy.Publisher("/move_base/cancel", GoalID, queue_size = 1)
+
+    time.sleep(1)
+    self.start_map.publish()
+    time.sleep(5)
+    self.cancel_map.publish()
+    time.sleep(2)
+    self.msg_move_to_goal.pose.position.x = 30
+    self.msg_move_to_goal.pose.position.y = -2
+    self.msg_move_to_goal.pose.orientation.w = 1
+    self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
+    self.pub_move_to_goal.publish(self.msg_move_to_goal)
+    self.start_explore.publish()
+    self.timer_flag = time.time()
 
   # Define a callback for the Image message
   def callback(self, img_msg):
@@ -128,9 +148,9 @@ class Camera:
 
         # Check vertices
         if ((len(contours_poly[index]) > 8) & (len(contours_poly[index]) < 23)):
-          cv2.circle(c, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (255, 0, 0), 5)   
+          cv2.circle(img, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5)   
 
-          os.system("rosnode kill /explore")    
+          # os.system("rosnode kill /explore")    
             
           ContourQty = ContourQty + 1
 
@@ -174,12 +194,15 @@ class Camera:
   def goal_move_base(self, center_ball, radius, image_size):
     distance = (1 * self.focalLength) / (radius*2)
     y_move_base = -(center_ball - image_size/2) / (radius*2) 
-    flag_pid = 0
+    # flag_pid = 0
     
     if abs(y_move_base) < 0.006:
       x_move_base = distance
     else:
       x_move_base = math.sqrt(distance**2 - y_move_base**2)
+    
+    if x_move_base > 20:
+      x_move_base = x_move_base / 2
   
     self.msg_move_to_goal.pose.position.x = x_move_base
     self.msg_move_to_goal.pose.position.y = y_move_base
@@ -188,27 +211,36 @@ class Camera:
     # print((radius * KNOWN_DISTANCE) / KNOWN_WIDTH)
     # import pdb; pdb.set_trace()
 
-    if self.flag: 
-      self.cont += 1
-      print('kill' + str(self.cont))
-      # pub values on move_base or use controller for best position
-      # if self.flag1 and distance > 30 and sel:
-      #   self.move_base_pub.publish(msg_move_to_goal)
-      #   self.flag1 = False
-      if self.cont == 15:
-        if flag_pid == 0:
-          # print('kill')
-          self.pub_move_to_goal.publish(self.msg_move_to_goal)
-          self.cont = 0
+    # if self.flag: 
+    self.cont += 1
+    print('kill' + str(self.cont))
+    # pub values on move_base or use controller for best position
+    # if self.flag1 and distance > 30 and sel:
+    #   self.move_base_pub.publish(msg_move_to_goal)
+    #   self.flag1 = False
     
-    if x_move_base < 5 and -3 < y_move_base < 3 and center_ball != -1:
-      self.flag = False
+    if self.cont == 200:
+      # if self.controller_flag == False:
+      # if flag_pid == 0:
+        # print('kill')
+        # self.cancel_move_base.publish()
+      self.pub_move_to_goal.publish(self.msg_move_to_goal)
+      self.cont = 0
+    
+    # if x_move_base < 5 and -3 < y_move_base < 3 and center_ball != -1:
+    if distance < 3 :
+      # self.flag = False
+      # self.cancel_move_base.publish()
+      self.controller_flag = True
       self.cancel_move_base.publish()
+
+      
+    if self.controller_flag:
       msg_twist = Twist()
-      msg_twist.angular.z = self.control_pid_yaw.pid_calculate(0.005, image_size/2, center_ball)
-      msg_twist.linear.x = self.control_pid_x.pid_calculate(0.001, 174, radius)
+      msg_twist.angular.z = self.control_pid_yaw.pid_calculate(1, image_size/2, center_ball)
+      msg_twist.linear.x = self.control_pid_x.pid_calculate(1, 185, radius)
       self.pub_cmd_vel.publish(msg_twist)
-      flag_pid = 1
+      # flag_pid = 1
       self.mission = True
 
     print('distance to sphere: ' + str(distance))

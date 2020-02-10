@@ -25,10 +25,10 @@
       temporalUpdate: 2.0
       resampleThreshold: 0.5
       # Initial Map Size
-      xmin: -30.0
-      ymin: -40.0
-      xmax: 100.0
-      ymax: 50.0
+      xmin: -50.0
+      ymin: -60.0
+      xmax: 120.0
+      ymax: 70.0
       delta: 0.05
       # All default
       sigma: 0.05
@@ -47,7 +47,7 @@
     
   </node>
     <!--- Run Move Base -->
-    <include file="$(find husky_navigation)/launch/move_base.launch" />
+    <include file="$(find desafio)/launch/custom_move_base.launch" />
 
 
    <!-- <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/> -->
@@ -102,12 +102,11 @@
     <!-- <node name="Navigator" pkg="nav2d_navigator" type="navigator">
       <rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
     </node>
-
     <node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
     <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
     <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> -->
 
-<node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
+<!-- <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
   <param name="robot_base_frame" value="base_link"/>
   <param name="costmap_topic" value="map"/>
   <param name="visualize" value="true"/>
@@ -118,14 +117,16 @@
   <param name="gain_scale" value="1.0"/>
   <param name="transform_tolerance" value="0.3"/>
   <param name="min_frontier_size" value="15"/>
-</node>
+  <remap from="move_base/goal" to="explore_remapping"/>
+</node> -->
 
-<!-- <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
+<rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/>
 
 	<node name="Operator" pkg="nav2d_operator" type="operator" >
 		<remap from="scan" to="scan"/>
 		<rosparam file="$(find nav2d_tutorials)/param/operator.yaml"/>
 		<rosparam file="$(find nav2d_tutorials)/param/costmap.yaml" ns="local_map" />
+    <remap from="cmd_vel" to="cmd_vel_nav2d"/>
 	</node>
 
 	<node name="Navigator" pkg="nav2d_navigator" type="navigator">
@@ -134,8 +135,8 @@
 
 	<node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
 	<node name="Explore" pkg="nav2d_navigator" type="explore_client" />
-	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />  -->
+	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />
 
-<!--<node pkg="desafio" name="exploration" type="explore.py" output="screen" />-->
+<!--<node pkg="desafio" name="exploration" type="explore.py" output="screen" /> -->
 
 </launch>
