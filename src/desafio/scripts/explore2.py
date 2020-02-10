@@ -73,7 +73,7 @@ class Camera:
     # self.msg_move_to_goal.pose.orientation.w = 1
     # self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
     # self.pub_move_to_goal.publish(self.msg_move_to_goal)
-    # self.start_explore.publish()
+    self.start_explore.publish()
     self.timer_flag = time.time()
 
   # Define a callback for the Image message
