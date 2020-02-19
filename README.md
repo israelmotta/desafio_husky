@@ -1,4 +1,4 @@
-# Yellow ball challenge husky
+# Yellow ball challenge with Husky
 
 ![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/husky/fig/HuskyMap.png)
 
