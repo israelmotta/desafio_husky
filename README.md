@@ -58,7 +58,8 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
   catkin_make
   source devel/setup.bash
   ```
-  
+ ---
+ 
  
  # Simulation
  
@@ -77,7 +78,8 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
   ```
  
  * Wait until the robot find the ball.
- 
+---
+
 
 # Packages used
 
@@ -86,6 +88,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 * Cimatec world: https://github.com/PPVTecchio/cimatec_map
 * Pointcloud to laserscan: http://wiki.ros.org/pointcloud_to_laserscan
 * Nav2D: http://wiki.ros.org/nav2d/Tutorials
+---
 
 
 # References
@@ -94,7 +97,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 
   * Camera:https://github.com/SMARTlab-Purdue/ros-tutorial-gazebo-simulation/wiki/Sec.-4:-Creating-a-light-sensor-plugin
 
-* Detecção:
+* Detection:
 
   * OpenCV with ROS: https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html
   * Detecting circles: https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/
