@@ -57,6 +57,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 * Execute:
  
   ```
+  cd ..
   catkin_make
   source devel/setup.bash
   ```
@@ -71,9 +72,9 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
  * Run:
  
   ```
-  roslaunch desafio_husky world1.launch
+  roslaunch desafio world1.launch
   
-  roslaunch desafio_husky mapping.launch
+  roslaunch desafio mapping.launch
   
   cd desafio_husky/src/desafio/scripts
   python explore2.py
