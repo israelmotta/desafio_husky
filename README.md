@@ -1,6 +1,6 @@
 # Yellow ball challenge with Husky
 
-![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/husky/fig/HuskyMap.png)
+![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/desafio/fig/HuskyMap.png)
 
 
 Challenge with the Husky carried out in the simulation of the Senai Cimatec yard, with the objective of finding and recognizing a yellow ball.
