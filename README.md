@@ -1,3 +1,5 @@
+# Yellow ball challenge husky
+
 ![alt text](https://raw.githubusercontent.com/israelmotta/desafio_husky/master/src/husky/fig/HuskyMap.png)
 
 
@@ -12,7 +14,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 ---
 
 
-# Setup
+## Setup
 
 * Clone this repository:
 
@@ -61,7 +63,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
  ---
  
  
- # Simulation
+ ## Simulation
  
  * Put a yellow ball in a random part of the map;
 
@@ -81,7 +83,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 ---
 
 
-# Packages used
+## Packages used
 
 * Husky: https://github.com/husky/husky
 * Velodyne VLP-16: https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/
@@ -91,7 +93,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 ---
 
 
-# References
+## References
 
 * Camera:
 
