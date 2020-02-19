@@ -27,7 +27,7 @@ Challenge with the Husky carried out in the simulation of the Senai Cimatec yard
 * Cimatec world:
 
   ```
-  git clone https://github.com/PPVTecchio/cimatec_map.git
+  git clone https://github.com/Brazilian-Institute-of-Robotics/bir.cimatec4_map.git
   ```
 
 * Husky:
