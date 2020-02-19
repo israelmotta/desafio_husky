@@ -32,6 +32,10 @@ class Camera:
   control_pid_yaw = None
   pub_cmd_vel = None
   cont = 0
+<<<<<<< HEAD
+=======
+  mission = False
+>>>>>>> parent of c9e6f68... fixing code
 
   def __init__(self):
     # focal length
@@ -51,7 +55,10 @@ class Camera:
     self.pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
     self.msg_move_to_goal = PoseStamped()
     self.flag = True
+<<<<<<< HEAD
     self.mission = False
+=======
+>>>>>>> parent of c9e6f68... fixing code
     self.camera_info = CameraInfo()
     self.control_pid_x = ControlPid(5, -5, 0.005, 0, 0)
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
@@ -69,8 +76,13 @@ class Camera:
     time.sleep(5)
     self.cancel_map.publish()
     time.sleep(2)
+<<<<<<< HEAD
     self.msg_move_to_goal.pose.position.x = 30
     self.msg_move_to_goal.pose.position.y = -2
+=======
+    self.msg_move_to_goal.pose.position.x = 40
+    self.msg_move_to_goal.pose.position.y = 0
+>>>>>>> parent of c9e6f68... fixing code
     self.msg_move_to_goal.pose.orientation.w = 1
     self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
     self.pub_move_to_goal.publish(self.msg_move_to_goal)
@@ -201,8 +213,15 @@ class Camera:
     else:
       x_move_base = math.sqrt(distance**2 - y_move_base**2)
     
+<<<<<<< HEAD
     if x_move_base > 20:
       x_move_base = x_move_base / 2
+=======
+    # if x_move_base > 20:
+    #   x_move_base = x_move_base / 2
+
+    print(' ' + str(x_move_base) + ' ' + str(y_move_base))
+>>>>>>> parent of c9e6f68... fixing code
   
     self.msg_move_to_goal.pose.position.x = x_move_base
     self.msg_move_to_goal.pose.position.y = y_move_base
@@ -211,6 +230,11 @@ class Camera:
     # print((radius * KNOWN_DISTANCE) / KNOWN_WIDTH)
     # import pdb; pdb.set_trace()
 
+<<<<<<< HEAD
+=======
+    if self.cont == 0:
+      self.pub_move_to_goal.publish(self.msg_move_to_goal)
+>>>>>>> parent of c9e6f68... fixing code
     # if self.flag: 
     self.cont += 1
     print('kill' + str(self.cont))
@@ -219,12 +243,20 @@ class Camera:
     #   self.move_base_pub.publish(msg_move_to_goal)
     #   self.flag1 = False
     
+<<<<<<< HEAD
     if self.cont == 200:
+=======
+    if self.cont == 400:
+>>>>>>> parent of c9e6f68... fixing code
       # if self.controller_flag == False:
       # if flag_pid == 0:
         # print('kill')
         # self.cancel_move_base.publish()
+<<<<<<< HEAD
       self.pub_move_to_goal.publish(self.msg_move_to_goal)
+=======
+      # self.pub_move_to_goal.publish(self.msg_move_to_goal)
+>>>>>>> parent of c9e6f68... fixing code
       self.cont = 0
     
     # if x_move_base < 5 and -3 < y_move_base < 3 and center_ball != -1:
