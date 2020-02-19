@@ -32,7 +32,6 @@ class Camera:
   control_pid_yaw = None
   pub_cmd_vel = None
   cont = 0
-  mission = False
 
   def __init__(self):
     # focal length
@@ -52,6 +51,7 @@ class Camera:
     self.pub_move_to_goal = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=1)
     self.msg_move_to_goal = PoseStamped()
     self.flag = True
+    self.mission = False
     self.camera_info = CameraInfo()
     self.control_pid_x = ControlPid(5, -5, 0.005, 0, 0)
     self.control_pid_yaw = ControlPid(3, -3, 0.001, 0, 0)
@@ -69,8 +69,8 @@ class Camera:
     time.sleep(5)
     self.cancel_map.publish()
     time.sleep(2)
-    self.msg_move_to_goal.pose.position.x = 40
-    self.msg_move_to_goal.pose.position.y = 0
+    self.msg_move_to_goal.pose.position.x = 30
+    self.msg_move_to_goal.pose.position.y = -2
     self.msg_move_to_goal.pose.orientation.w = 1
     self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
     self.pub_move_to_goal.publish(self.msg_move_to_goal)
@@ -201,10 +201,8 @@ class Camera:
     else:
       x_move_base = math.sqrt(distance**2 - y_move_base**2)
     
-    # if x_move_base > 20:
-    #   x_move_base = x_move_base / 2
-
-    print(' ' + str(x_move_base) + ' ' + str(y_move_base))
+    if x_move_base > 20:
+      x_move_base = x_move_base / 2
   
     self.msg_move_to_goal.pose.position.x = x_move_base
     self.msg_move_to_goal.pose.position.y = y_move_base
@@ -213,8 +211,6 @@ class Camera:
     # print((radius * KNOWN_DISTANCE) / KNOWN_WIDTH)
     # import pdb; pdb.set_trace()
 
-    if self.cont == 0:
-      self.pub_move_to_goal.publish(self.msg_move_to_goal)
     # if self.flag: 
     self.cont += 1
     print('kill' + str(self.cont))
@@ -223,12 +219,12 @@ class Camera:
     #   self.move_base_pub.publish(msg_move_to_goal)
     #   self.flag1 = False
     
-    if self.cont == 400:
+    if self.cont == 200:
       # if self.controller_flag == False:
       # if flag_pid == 0:
         # print('kill')
         # self.cancel_move_base.publish()
-      # self.pub_move_to_goal.publish(self.msg_move_to_goal)
+      self.pub_move_to_goal.publish(self.msg_move_to_goal)
       self.cont = 0
     
     # if x_move_base < 5 and -3 < y_move_base < 3 and center_ball != -1:
@@ -242,7 +238,7 @@ class Camera:
     if self.controller_flag:
       msg_twist = Twist()
       msg_twist.angular.z = self.control_pid_yaw.pid_calculate(1, image_size/2, center_ball)
-      msg_twist.linear.x = self.control_pid_x.pid_calculate(1, 255, radius)
+      msg_twist.linear.x = self.control_pid_x.pid_calculate(1, 185, radius)
       self.pub_cmd_vel.publish(msg_twist)
       # flag_pid = 1
       self.mission = True
