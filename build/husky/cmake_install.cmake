@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/husky
+# Install script for directory: /home/isadora/desafio_husky/src/husky
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/husky/catkin_generated/installspace/husky.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/husky/catkin_generated/installspace/husky.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/husky/catkin_generated/installspace/huskyConfig.cmake"
-    "/home/israel/desafio_husky/build/husky/catkin_generated/installspace/huskyConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/husky/catkin_generated/installspace/huskyConfig.cmake"
+    "/home/isadora/desafio_husky/build/husky/catkin_generated/installspace/huskyConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky" TYPE FILE FILES "/home/israel/desafio_husky/src/husky/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky" TYPE FILE FILES "/home/isadora/desafio_husky/src/husky/package.xml")
 endif()
 

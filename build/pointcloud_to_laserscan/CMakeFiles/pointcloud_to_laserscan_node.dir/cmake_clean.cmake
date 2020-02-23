@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/pointcloud_to_laserscan_node.dir/src/pointcloud_to_laserscan_node.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node.pdb"
-  "/home/israel/desafio_husky/devel/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node"
+  "/home/isadora/desafio_husky/devel/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node.pdb"
+  "/home/isadora/desafio_husky/devel/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node"
 )
 
 # Per-language clean rules from dependency scanning.

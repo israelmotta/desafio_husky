@@ -1,8 +1,8 @@
-# Install script for directory: /home/israel/desafio_husky/src/navigation_2d/nav2d_tutorials
+# Install script for directory: /home/isadora/desafio_husky/src/navigation_2d/nav2d_tutorials
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/israel/desafio_husky/install")
+  set(CMAKE_INSTALL_PREFIX "/home/isadora/desafio_husky/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/israel/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorials.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/isadora/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorials.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nav2d_tutorials/cmake" TYPE FILE FILES
-    "/home/israel/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorialsConfig.cmake"
-    "/home/israel/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorialsConfig-version.cmake"
+    "/home/isadora/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorialsConfig.cmake"
+    "/home/isadora/desafio_husky/build/navigation_2d/nav2d_tutorials/catkin_generated/installspace/nav2d_tutorialsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nav2d_tutorials" TYPE FILE FILES "/home/israel/desafio_husky/src/navigation_2d/nav2d_tutorials/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nav2d_tutorials" TYPE FILE FILES "/home/isadora/desafio_husky/src/navigation_2d/nav2d_tutorials/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nav2d_tutorials" TYPE DIRECTORY FILES
-    "/home/israel/desafio_husky/src/navigation_2d/nav2d_tutorials/launch"
-    "/home/israel/desafio_husky/src/navigation_2d/nav2d_tutorials/param"
-    "/home/israel/desafio_husky/src/navigation_2d/nav2d_tutorials/world"
+    "/home/isadora/desafio_husky/src/navigation_2d/nav2d_tutorials/launch"
+    "/home/isadora/desafio_husky/src/navigation_2d/nav2d_tutorials/param"
+    "/home/isadora/desafio_husky/src/navigation_2d/nav2d_tutorials/world"
     )
 endif()
 

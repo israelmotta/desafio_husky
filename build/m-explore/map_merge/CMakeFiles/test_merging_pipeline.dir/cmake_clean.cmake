@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_merging_pipeline.dir/test/test_merging_pipeline.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/multirobot_map_merge/test_merging_pipeline.pdb"
-  "/home/israel/desafio_husky/devel/lib/multirobot_map_merge/test_merging_pipeline"
+  "/home/isadora/desafio_husky/devel/lib/multirobot_map_merge/test_merging_pipeline.pdb"
+  "/home/isadora/desafio_husky/devel/lib/multirobot_map_merge/test_merging_pipeline"
 )
 
 # Per-language clean rules from dependency scanning.

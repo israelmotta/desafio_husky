@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/explore.dir/src/costmap_client.cpp.o"
   "CMakeFiles/explore.dir/src/explore.cpp.o"
   "CMakeFiles/explore.dir/src/frontier_search.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/explore_lite/explore.pdb"
-  "/home/israel/desafio_husky/devel/lib/explore_lite/explore"
+  "/home/isadora/desafio_husky/devel/lib/explore_lite/explore.pdb"
+  "/home/isadora/desafio_husky/devel/lib/explore_lite/explore"
 )
 
 # Per-language clean rules from dependency scanning.

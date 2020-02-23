@@ -47,7 +47,7 @@
     
   </node>
     <!--- Run Move Base -->
-    <include file="$(find desafio)/launch/move_base.launch" />
+    <include file="$(find desafio)/launch/custom_move_base.launch" />
 
 
    <!-- <rosparam file="$(find nav2d_tutorials)/param/ros.yaml"/> -->
@@ -102,7 +102,6 @@
     <!-- <node name="Navigator" pkg="nav2d_navigator" type="navigator">
       <rosparam file="$(find nav2d_tutorials)/param/navigator.yaml"/>
     </node>
-
     <node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
     <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
     <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> -->

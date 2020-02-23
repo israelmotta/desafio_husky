@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/SelfLocalizer.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/SelfLocalizer.h
 string
 -
 ros/ros.h
@@ -26,37 +26,37 @@ nav2d_localizer/pf.h
 nav2d_localizer/pf_pdf.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/map.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/map.h
 stdint.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf.h
 nav2d_localizer/pf_vector.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_vector.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_vector.h
 nav2d_localizer/pf_kdtree.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_kdtree.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_kdtree.h
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_kdtree.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_kdtree.h
 rtk.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/rtk.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/rtk.h
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_pdf.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_pdf.h
 nav2d_localizer/pf_vector.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_vector.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/nav2d_localizer/pf_vector.h
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_vector.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include/nav2d_localizer/pf_vector.h
 stdio.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/src/LocalizerNode.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/src/LocalizerNode.cpp
 ros/ros.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/src/ros/ros.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/src/ros/ros.h
 tf/transform_broadcaster.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/src/tf/transform_broadcaster.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/src/tf/transform_broadcaster.h
 nav_msgs/GetMap.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/src/nav_msgs/GetMap.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/src/nav_msgs/GetMap.h
 nav2d_localizer/SelfLocalizer.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/src/nav2d_localizer/SelfLocalizer.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/src/nav2d_localizer/SelfLocalizer.h
 
 /opt/ros/melodic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

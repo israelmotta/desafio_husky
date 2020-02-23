@@ -1,8 +1,8 @@
-prefix=/home/israel/desafio_husky/devel
+prefix=/home/isadora/desafio_husky/devel
 
 Name: nav2d_localizer
 Description: Description of nav2d_localizer
 Version: 0.4.2
-Cflags: -I/home/israel/desafio_husky/src/navigation_2d/nav2d_localizer/include
-Libs: -L/home/israel/desafio_husky/devel/lib -lSelfLocalizer
+Cflags: -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_localizer/include
+Libs: -L${prefix}/lib -lSelfLocalizer
 Requires: roscpp tf nav_msgs sensor_msgs geometry_msgs

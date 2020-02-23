@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/nav2d_operator_generate_messages_cpp"
-  "/home/israel/desafio_husky/devel/include/nav2d_operator/cmd.h"
+  "/home/isadora/desafio_husky/devel/include/nav2d_operator/cmd.h"
 )
 
 # Per-language clean rules from dependency scanning.

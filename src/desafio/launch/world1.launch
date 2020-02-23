@@ -22,7 +22,7 @@
     <arg name="verbose" value= "false"/>
   </include>
 
-  <include file="$(find desafio)/launch/spawn_husky.launch">
+  <include file="$(find desafio)/launch/custom_spawn_husky.launch">
       <arg name="laser_enabled" value="$(arg laser_enabled)"/>
       <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
       <arg name="urdf_extras" value="$(arg urdf_extras)"/>
@@ -38,7 +38,7 @@
         <rosparam>
             target_frame: velodyne # Leave disabled to output scan in pointcloud frame
             transform_tolerance: 0.01
-            min_height: -0.42 <!---0.4-->
+            min_height: -0.45 <!---0.4-->
             <!-- max_height: 1.0 -->
             <!-- angle_min: -1.5708 # -M_PI/2
             angle_max: 1.5708 # M_PI/2

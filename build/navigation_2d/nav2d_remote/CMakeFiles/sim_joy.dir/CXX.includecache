@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_remote/src/sim_joy.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_remote/src/sim_joy.cpp
 ros/ros.h
 -
 sensor_msgs/Joy.h

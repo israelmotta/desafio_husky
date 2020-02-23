@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/combine_grids.dir/src/combine_grids/grid_compositor.cpp.o"
   "CMakeFiles/combine_grids.dir/src/combine_grids/grid_warper.cpp.o"
   "CMakeFiles/combine_grids.dir/src/combine_grids/merging_pipeline.cpp.o"
-  "/home/israel/desafio_husky/devel/lib/libcombine_grids.pdb"
-  "/home/israel/desafio_husky/devel/lib/libcombine_grids.a"
+  "/home/isadora/desafio_husky/devel/lib/libcombine_grids.pdb"
+  "/home/isadora/desafio_husky/devel/lib/libcombine_grids.a"
 )
 
 # Per-language clean rules from dependency scanning.

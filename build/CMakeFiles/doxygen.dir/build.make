@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/israel/desafio_husky/src
+CMAKE_SOURCE_DIR = /home/isadora/desafio_husky/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/israel/desafio_husky/build
+CMAKE_BINARY_DIR = /home/isadora/desafio_husky/build
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/israel/desafio_husky/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/israel/desafio_husky/src /home/israel/desafio_husky/src /home/israel/desafio_husky/build /home/israel/desafio_husky/build /home/israel/desafio_husky/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/isadora/desafio_husky/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/isadora/desafio_husky/src /home/isadora/desafio_husky/src /home/isadora/desafio_husky/build /home/isadora/desafio_husky/build /home/isadora/desafio_husky/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/israel/desafio_husky/devel/include/nav2d_msgs/RobotPose.h
+/home/isadora/desafio_husky/devel/include/nav2d_msgs/RobotPose.h
 string
 -
 vector
@@ -26,49 +26,49 @@ std_msgs/Header.h
 geometry_msgs/Pose2D.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/MinPosPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/MinPosPlanner.h
 nav2d_navigator/ExplorationPlanner.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/MultiWavefrontPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/MultiWavefrontPlanner.h
 nav2d_navigator/ExplorationPlanner.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/NearestFrontierPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/include/nav2d_exploration/NearestFrontierPlanner.h
 nav2d_navigator/ExplorationPlanner.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.cpp
 MinPosPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.h
 visualization_msgs/Marker.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.cpp
 MultiWavefrontPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.h
 geometry_msgs/Pose2D.h
 -
 nav_msgs/GridCells.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.cpp
 NearestFrontierPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.h
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/exploration_plugins.cpp
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/exploration_plugins.cpp
 pluginlib/class_list_macros.h
 -
 nav2d_navigator/ExplorationPlanner.h
 -
 NearestFrontierPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/NearestFrontierPlanner.h
 MultiWavefrontPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MultiWavefrontPlanner.h
 MinPosPlanner.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_exploration/src/MinPosPlanner.h
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/ExplorationPlanner.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/ExplorationPlanner.h
 string
 -
 tf/transform_listener.h
@@ -78,11 +78,11 @@ nav2d_msgs/RobotPose.h
 nav2d_navigator/GridMap.h
 -
 
-/home/israel/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/GridMap.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/GridMap.h
 ros/ros.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/ros/ros.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/ros/ros.h
 nav_msgs/OccupancyGrid.h
-/home/israel/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/nav_msgs/OccupancyGrid.h
+/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include/nav2d_navigator/nav_msgs/OccupancyGrid.h
 
 /opt/ros/melodic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

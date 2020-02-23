@@ -1,8 +1,8 @@
-prefix=/home/israel/desafio_husky/devel
+prefix=/home/isadora/desafio_husky/devel
 
 Name: nav2d_tutorials
 Description: Description of nav2d_tutorials
 Version: 0.4.2
 Cflags: 
-Libs: -L/home/israel/desafio_husky/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

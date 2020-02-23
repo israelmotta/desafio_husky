@@ -7,10 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/israel/desafio_husky/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/israel/desafio_husky/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/israel/desafio_husky/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD="/home/israel/desafio_husky/build"
-export PYTHONPATH="/home/israel/desafio_husky/devel/lib/python2.7/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/israel/desafio_husky/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/israel/desafio_husky/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/isadora/desafio_husky/devel:$CMAKE_PREFIX_PATH"
+export PWD="/home/isadora/desafio_husky/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/isadora/desafio_husky/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/isadora/desafio_husky/src:$ROS_PACKAGE_PATH"

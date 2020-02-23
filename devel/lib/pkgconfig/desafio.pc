@@ -1,8 +1,8 @@
-prefix=/home/israel/desafio_husky/devel
+prefix=/home/isadora/desafio_husky/devel
 
 Name: desafio
 Description: Description of desafio
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/israel/desafio_husky/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

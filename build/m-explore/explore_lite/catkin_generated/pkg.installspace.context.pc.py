@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "actionlib_msgs;geometry_msgs;map_msgs;move_base_msgs;nav_msgs;std_msgs;visualization_msgs".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "explore_lite"
-PROJECT_SPACE_DIR = "/home/israel/desafio_husky/install"
+PROJECT_SPACE_DIR = "/home/isadora/desafio_husky/install"
 PROJECT_VERSION = "2.1.1"
