@@ -1,8 +1,0 @@
-prefix=/home/isadora/desafio_husky/devel
-
-Name: nav2d_navigator
-Description: Description of nav2d_navigator
-Version: 0.4.2
-Cflags: -I/home/isadora/desafio_husky/devel/include -I/home/isadora/desafio_husky/src/navigation_2d/nav2d_navigator/include
-Libs: -L${prefix}/lib -lRobotNavigator -lMapInflationTool
-Requires: roscpp message_runtime tf actionlib actionlib_msgs geometry_msgs nav2d_msgs nav2d_operator
